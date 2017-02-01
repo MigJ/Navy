@@ -1,30 +1,32 @@
-##
-## Makefile for  in /home/miguel.joubert/delivery/PSU_2016_navy
-## 
-## Made by miguel joubert
-## Login   <miguel.joubert@epitech.net>
-## 
-## Started on  Mon Jan 30 15:22:51 2017 miguel joubert
-## Last update Tue Jan 31 02:07:01 2017 miguel joubert
-##
+CC	=	gcc
 
-PROJECT	=	src/main.c		\
-		src/verify.c		\
-		src/tools.c		\
-		src/maps.c		\
-
-FLAGS	=	-Wall -Werror -W -Wextra
+BUG	=	gcc -g3
 
 NAME	=	navy
 
-all:	$(NAME)
+SRC	=	src/*.c
 
-$(NAME):	$(PROJECT)
-	$(CC) -g $(PROJECT) -o $(NAME) $(FLAGS) -lgnl
+LIB	=
 
-clean:
-	rm -f $(NAME)
+CFLAGS	=	-I./includes/ -W -Wall -Wextra -pedantic
 
-fclean:	clean
+RM	=	rm -fr
 
-re:	fclean	all
+all	:	$(NAME)
+
+$(NAME)	:
+
+		$(CC) -o $(NAME) $(SRC) $(CFLAGS) -L lib -lmy -lgnl
+
+debug :
+		$(BUG) -o $(NAME) $(SRC) $(CFLAGS) -L lib -lmy -lgnl
+
+clean	:
+
+		$(RM) $(OBJ)
+
+fclean	:	clean
+
+		$(RM) $(NAME)
+
+re	:	fclean all

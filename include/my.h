@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Tue Jan 31 02:17:50 2017 miguel joubert
+** Last update Wed Feb  1 19:47:25 2017 miguel joubert
 */
 
 #ifndef _NAVY_H
@@ -20,7 +20,21 @@
 #include <stdlib.h>
 #include "struct.h"
 
-char	**is_touched(char **map, t_vector C, char c);
+t_elem  init_elem(int ac, char **av, t_elem E);
+
+t_map    init_map(t_map M, t_elem E);
+
+int     help();
+
+void    host(t_elem E, t_map M);
+
+t_map   map_aftchd(t_map M, t_elem E, char *str, int cond);
+
+int     client(t_elem E, t_map M);
+
+int     verify_exist(char *buff);
+
+char	**is_touched(char **map, t_vector C);
 
 char    **my_position_init(char **map, t_vector C, char c);
 
@@ -30,7 +44,7 @@ size_t  my_strlen(char *str);
 
 void    my_putstr(char *str, int output);
 
-void    verify_pos(char *buff);
+int    verify_pos(char *buff);
 
 t_hit   case_cpy(char *buff, t_hit H);
 
@@ -38,7 +52,7 @@ t_hit   case_cpy_second(char *buff, t_hit H);
 
 t_hit   case_cpy_third(char *buff, t_hit H);
 
-void    verify_hit(char *buff);
+int    verify_hit(char *buff);
 
 size_t  my_strlen(char *str);
 
@@ -55,5 +69,9 @@ t_vector        convert_co_char(char *number);
 char    **my_position(char *buff);
 
 char    **my_init_map();
+
+char    *my_strcat(char *dest, char *src);
+
+char	*pars_case(char *buff);
 
 #endif /* _NAVY_H */

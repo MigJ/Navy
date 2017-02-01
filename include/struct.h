@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:01:49 2017 miguel joubert
-** Last update Tue Jan 31 00:07:56 2017 miguel joubert
+** Last update Wed Feb  1 17:13:35 2017 miguel joubert
 */
 
 #ifndef _STRUCT_H
@@ -27,5 +27,24 @@ typedef struct s_vector
   int	x;
   int	y;
 }t_vector;
+
+typedef struct s_elem
+{
+  int   fd;
+  int   pid;
+  char  *buff;
+  int   i;
+  char  *s;
+  int	win;
+  int	a;
+  int	b;
+  int	answer;
+}t_elem;
+
+typedef struct s_map
+{
+  char   **map_adv;
+  char   **my_map;
+}t_map;
 
 #endif /* _STRUCT_H */

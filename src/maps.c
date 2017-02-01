@@ -5,94 +5,10 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:42:57 2017 miguel joubert
-** Last update Tue Jan 31 02:18:56 2017 miguel joubert
+** Last update Wed Feb  1 22:08:26 2017 miguel joubert
 */
 
-#include "../include/my.h"
-
-char	**is_touched(char **map, t_vector C, char c)
-{
-  char  **dest;
-  int   i;
-  int   j;
-  int   k;
-
-  k = j = i = 0;
-  dest = malloc(sizeof(char *) * 11);
-  while (i != C.y)
-    dest[j++] = strdup(map[i++]);
-  dest[j] = malloc(sizeof(char) * 18);
-  while (map[i][k])
-    {
-      if (k == C.x)
-	{
-	  if (map[i][k] == '.')
-	    {
-	      my_putstr("Wrong !\n", 1);
-	      return (map);
-	    }
-	  dest[j][k++] = c;
-	}
-      dest[j][k] = map[i][k];
-      k++;
-    }
-  dest[j][k] = 0;
-  while (map[++i])
-    dest[++j] = strdup(map[i]);
-  dest[j + 1] = NULL;
-  return (dest);
-}
-
-char	**my_position_init(char **map, t_vector C, char c)
-{
-  char	**dest;
-  int	i;
-  int	j;
-  int	k;
-
-  k = j = i = 0;
-  dest = malloc(sizeof(char *) * 11);
-  while (i != C.y)
-    dest[j++] = strdup(map[i++]);
-  dest[j] = malloc(sizeof(char) * 18);
-  while (map[i][k])
-    {
-      if (k == C.x)
-	dest[j][k++] = c;
-      dest[j][k] = map[i][k];
-      k++;
-    }
-  dest[j][k] = 0;
-  while (map[++i])
-    dest[++j] = strdup(map[i]);
-  dest[j + 1] = NULL;
-  return (dest);
-}
-
-char	**my_position(char *buff)
-{
-  char	**all_cases;
-  char	**map;
-  int	i;
-  int	time;
-
-  i = 0;
-  time = -1;
-  all_cases = ret_all_cases(buff);
-  map = my_init_map();
-  while (++time != 2)
-    map = my_position_init(map, convert_co_char(all_cases[i++]), 50);
-  time = -1;
-  while (++time != 3)
-    map = my_position_init(map, convert_co_char(all_cases[i++]), 51);
-  time = -1;
-  while (++time != 4)
-    map = my_position_init(map, convert_co_char(all_cases[i++]), 52);
-  time = -1;
-  while (++time != 5)
-    map = my_position_init(map, convert_co_char(all_cases[i++]), 53);
-  return (map);
-}
+#include "include/my.h"
 
 t_vector	convert_co_char(char *number)
 {
@@ -125,19 +41,26 @@ t_vector	convert_co_int(int x, int y)
   char	letter[] = " |A B C D E F G H";
   char	nb[] = " -12345678";
 
+  i = 0;
   while (letter[i])
-    if (x + 64 == letter[i++])
-      {
-	C.x = i - 1;
-	break;
-      }
+    {
+      if (x + 64 == letter[i++])
+	{
+	  C.x = i - 1;
+	  break;
+	}
+      else C.x = 0;
+    }
   i = 0;
   while (nb[i])
-    if (y == nb[i++] - 48)
-      {
-	C.y = i - 1;
-	break;
-      }
+    {
+      if (y + 48 == nb[i++])
+	{
+	  C.y = i - 1;
+	  break;
+	}
+      else C.y = 0;
+    }
   return (C);
 }
 
@@ -166,7 +89,8 @@ char	**my_init_map()
     {
       *map[i] = i + 47;
       map[i][1] = '|';
-      map[i] = strcat(map[i], ". . . . . . . .\n\0");
+      map[i][2] = 0;
+      map[i] = my_strcat(strdup(map[i]), ". . . . . . . .\n\0");
       i++;
     }
   map[i] = NULL;
