@@ -5,12 +5,12 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:39:04 2017 miguel joubert
-** Last update Wed Feb  1 19:53:04 2017 miguel joubert
+** Last update Wed Feb  1 22:50:30 2017 miguel joubert
 */
 
 #include "include/my.h"
 
-int     help()
+int	help()
 {
   my_putstr("USAGE\n", 1);
   my_putstr("           ./navy [fistr_player_pid] navy_positions\n", 1);
@@ -28,8 +28,16 @@ char	*pars_case(char *buff)
 
   bol = 0;
   dest = malloc(sizeof(char) * 3);
-  if (*buff >= 'a' && *buff <= 'z') *dest = *buff - 32, dest[1] = buff[1], bol = 1;
-  if (buff[1] >= 'a' && buff[1] <= 'z') *dest = buff[1] - 32, dest[1] = *buff, bol = 1;
+  if (*buff >= 'a' && *buff <= 'z')
+    {
+      *dest = *buff - 32;
+      dest[1] = buff[1], bol = 1;
+    }
+  if (buff[1] >= 'a' && buff[1] <= 'z')
+    {
+      *dest = buff[1] - 32;
+      dest[1] = *buff, bol = 1;
+    }
   if (buff[1] >= 'A' && buff[1] <= 'Z') *dest = buff[1], bol = 1;
   if (*buff > '0' && *buff < '9') dest[1] = *buff, bol = 1;
   dest[2] = 0;
@@ -65,7 +73,7 @@ char	*my_strcat(char *dest, char *src)
   return (res);
 }
 
-void    my_putstr(char *str, int output)
+void	my_putstr(char *str, int output)
 {
   int   i;
 
@@ -77,7 +85,7 @@ void    my_putstr(char *str, int output)
     }
 }
 
-size_t  my_strlen(char *str)
+size_t	my_strlen(char *str)
 {
   size_t        i;
 

@@ -5,14 +5,14 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Wed Feb  1 22:25:25 2017 miguel joubert
+** Last update Wed Feb  1 22:43:13 2017 miguel joubert
 */
 
 #include "include/my.h"
 #include "include/libs.h"
 #include "include/proto.h"
 
-int     client_init(int pid_server)
+int	client_init(int pid_server)
 {
   int   pid;
 
@@ -28,7 +28,7 @@ int     client_init(int pid_server)
   return (pid_server);
 }
 
-int     server_init()
+int	server_init()
 {
   pid_t pid_client;
   pid_t pid_server;
@@ -45,7 +45,7 @@ int     server_init()
   return (pid_client);
 }
 
-t_elem  init_elem(int ac, char **av, t_elem E)
+t_elem	init_elem(int ac, char **av, t_elem E)
 {
   E.pid = (ac == 2) ? server_init() : client_init(my_getnbr(av[1]));
   E.i = (ac == 2) ? 1 : 2;
@@ -58,7 +58,7 @@ t_elem  init_elem(int ac, char **av, t_elem E)
   return (E);
 }
 
-t_map   init_map(t_map M, t_elem E)
+t_map	init_map(t_map M, t_elem E)
 {
   M.map_adv = my_init_map();
   printf("enemy's positions:\n");

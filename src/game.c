@@ -5,14 +5,14 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Wed Feb  1 22:29:02 2017 miguel joubert
+** Last update Wed Feb  1 22:42:29 2017 miguel joubert
 */
 
 #include "include/my.h"
 #include "include/libs.h"
 #include "include/proto.h"
 
-t_map   map_aftchd(t_map M, t_elem E, char *str, int cond)
+t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
 {
   if (cond == 2)
     {
@@ -24,7 +24,7 @@ t_map   map_aftchd(t_map M, t_elem E, char *str, int cond)
   else
     {
       my_printf("%c%d: %s\n", E.a + 64, E.b, str);
-      (cond == 1) ? M.my_map = is_touched(M.my_map, convert_co_int(E.a, E.b)) : 0;
+    (cond == 1) ? M.my_map = is_touched(M.my_map, convert_co_int(E.a, E.b)) : 0;
       send_bit(cond, E.pid);
     }
   return (M);
@@ -57,7 +57,7 @@ void	host(t_elem E, t_map M)
     }
 }
 
-int 	client(t_elem E, t_map M)
+int	client(t_elem E, t_map M)
 {
   while (E.win != 0)
     {

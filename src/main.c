@@ -5,7 +5,7 @@
 ** Login   <nathan.trehout@epitech.net>
 ** 
 ** Started on  Tue Jan 31 03:42:42 2017 Nathan Trehout
-** Last update Wed Feb  1 22:27:54 2017 miguel joubert
+** Last update Wed Feb  1 22:43:28 2017 miguel joubert
 */
 
 #include "include/libs.h"
@@ -21,7 +21,7 @@ void	sig_handler(int	sig)
     sig_detected = 1;
 }
 
-void handle_signal(int sig, siginfo_t *si, void *context)
+void	handle_signal(int sig, siginfo_t *si, void *context)
 {
   (void) context;
   if (sig == SIGUSR1)

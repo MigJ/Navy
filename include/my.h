@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Wed Feb  1 19:47:25 2017 miguel joubert
+** Last update Wed Feb  1 22:57:29 2017 miguel joubert
 */
 
 #ifndef _NAVY_H
@@ -19,6 +19,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "struct.h"
+
+t_hit   init_case(t_hit H);
 
 t_elem  init_elem(int ac, char **av, t_elem E);
 

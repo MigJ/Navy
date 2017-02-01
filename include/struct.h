@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:01:49 2017 miguel joubert
-** Last update Wed Feb  1 17:13:35 2017 miguel joubert
+** Last update Wed Feb  1 22:59:02 2017 miguel joubert
 */
 
 #ifndef _STRUCT_H
@@ -46,5 +46,13 @@ typedef struct s_map
   char   **map_adv;
   char   **my_map;
 }t_map;
+
+typedef struct s_touch
+{
+  char  **dest;
+  int   i;
+  int   j;
+  int   k;
+}t_touch;
 
 #endif /* _STRUCT_H */

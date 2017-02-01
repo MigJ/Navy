@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:42:57 2017 miguel joubert
-** Last update Wed Feb  1 22:08:26 2017 miguel joubert
+** Last update Wed Feb  1 22:45:09 2017 miguel joubert
 */
 
 #include "include/my.h"
@@ -49,7 +49,6 @@ t_vector	convert_co_int(int x, int y)
 	  C.x = i - 1;
 	  break;
 	}
-      else C.x = 0;
     }
   i = 0;
   while (nb[i])
@@ -59,7 +58,6 @@ t_vector	convert_co_int(int x, int y)
 	  C.y = i - 1;
 	  break;
 	}
-      else C.y = 0;
     }
   return (C);
 }
@@ -97,7 +95,7 @@ char	**my_init_map()
   return (map);
 }
 
-char    **ret_all_cases(char *buff)
+char	**ret_all_cases(char *buff)
 {
   t_hit H;
 
@@ -107,7 +105,8 @@ char    **ret_all_cases(char *buff)
   while (buff[H.i - 2])
     {
       if (buff[H.i] != buff[H.i + 3] && H.bol == 0) H = case_cpy(buff, H);
-      else if (buff[H.i + 4] - buff[H.i + 1] != 1 && buff[H.i + 4] - buff[H.i + 1] != 0
+      else if (buff[H.i + 4] - buff[H.i + 1] != 1
+	       && buff[H.i + 4] - buff[H.i + 1] != 0
 	       && H.bol == 0) H = case_cpy_second(buff, H);
       H = case_cpy_third(buff, H);
     }

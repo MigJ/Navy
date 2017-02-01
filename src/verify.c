@@ -5,12 +5,20 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:30:06 2017 miguel joubert
-** Last update Wed Feb  1 22:10:18 2017 miguel joubert
+** Last update Wed Feb  1 22:57:16 2017 miguel joubert
 */
 
 #include "include/my.h"
 
-t_hit   case_cpy(char *buff, t_hit H)
+t_hit	init_case(t_hit H)
+{
+  H.pos = H.bol = H.j = H.k = 0;
+  H.i = 2;
+  H.all_case = malloc(sizeof(char *) * 15);
+  return (H);
+}
+
+t_hit	case_cpy(char *buff, t_hit H)
 {
   H.tmp = (buff[H.i + 3] - 48) - (buff[H.i] - 48);
   while (H.pos != H.tmp - 1)
@@ -25,7 +33,7 @@ t_hit   case_cpy(char *buff, t_hit H)
   return (H);
 }
 
-t_hit   case_cpy_second(char *buff, t_hit H)
+t_hit	case_cpy_second(char *buff, t_hit H)
 {
   H.tmp = buff[H.i + 4] - buff[H.i + 1];
   while (H.pos != H.tmp - 1)
@@ -40,7 +48,7 @@ t_hit   case_cpy_second(char *buff, t_hit H)
   return (H);
 }
 
-t_hit   case_cpy_third(char *buff, t_hit H)
+t_hit	case_cpy_third(char *buff, t_hit H)
 {
   H.all_case[H.j] = malloc(sizeof(char) * 3);
   H.all_case[H.j][H.k++] = buff[H.i];
@@ -52,18 +60,17 @@ t_hit   case_cpy_third(char *buff, t_hit H)
   return (H);
 }
 
-int    verify_hit(char *buff)
+int	verify_hit(char *buff)
 {
   t_hit H;
 
   if (buff == NULL || *buff == 0) return (0);
-  H.pos = H.bol = H.j = H.k = 0;
-  H.i = 2;
-  H.all_case = malloc(sizeof(char *) * 15);
+  H = init_case(H);
   while (buff[H.i - 2])
     {
       if (buff[H.i] != buff[H.i + 3] && H.bol == 0) H = case_cpy(buff, H);
-      else if (buff[H.i + 4] - buff[H.i + 1] != 1 && buff[H.i + 4] - buff[H.i + 1] != 0
+      else if (buff[H.i + 4] - buff[H.i + 1] != 1
+	       && buff[H.i + 4] - buff[H.i + 1] != 0
 	       && H.bol == 0) H = case_cpy_second(buff, H);
       H = case_cpy_third(buff, H);
     }
