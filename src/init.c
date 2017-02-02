@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Wed Feb  1 22:43:13 2017 miguel joubert
+** Last update Thu Feb  2 13:31:24 2017 Joubert Miguel
 */
 
 #include "include/my.h"
@@ -53,7 +53,7 @@ t_elem	init_elem(int ac, char **av, t_elem E)
   else E.fd = open(av[2], O_RDONLY);
   E.buff = malloc(sizeof(char) * 33);
   read(E.fd, E.buff, 32);
-  E.buff[32] = 0;
+  E.buff[31] = 0;
   E.win = 14;
   return (E);
 }

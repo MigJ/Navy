@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:42:57 2017 miguel joubert
-** Last update Wed Feb  1 22:45:09 2017 miguel joubert
+** Last update Thu Feb  2 13:34:24 2017 Joubert Miguel
 */
 
 #include "include/my.h"
@@ -18,6 +18,12 @@ t_vector	convert_co_char(char *number)
   char  nb[] = " -12345678";
 
   i = -1;
+  if (number == NULL)
+    {
+      C.x = 0;
+      C.y = 0;
+      return (C);
+    }
   while (letter[++i])
     if (letter[i] == *number)
       {
@@ -102,7 +108,7 @@ char	**ret_all_cases(char *buff)
   H.pos = H.bol = H.j = H.k = 0;
   H.i = 2;
   H.all_case = malloc(sizeof(char *) * 15);
-  while (buff[H.i - 2])
+  while (H.i != 29)
     {
       if (buff[H.i] != buff[H.i + 3] && H.bol == 0) H = case_cpy(buff, H);
       else if (buff[H.i + 4] - buff[H.i + 1] != 1

@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:09:28 2017 miguel joubert
-** Last update Wed Feb  1 22:51:27 2017 miguel joubert
+** Last update Thu Feb  2 13:20:51 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -14,7 +14,7 @@ int	verify_pos(char *buff)
 {
   int   value;
 
-  if (buff == NULL || *buff == 0) return (0);
+  if (*buff == 0) return (0);
   value = 5;
   if (buff[31] != 0) return (1);
   while (value != 37)
