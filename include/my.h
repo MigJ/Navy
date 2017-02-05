@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Wed Feb  1 22:57:29 2017 miguel joubert
+** Last update Sun Feb  5 16:19:13 2017 Nathan Trehout
 */
 
 #ifndef _NAVY_H

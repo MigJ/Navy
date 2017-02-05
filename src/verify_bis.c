@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:09:28 2017 miguel joubert
-** Last update Thu Feb  2 13:20:51 2017 Joubert Miguel
+** Last update Sun Feb  5 16:36:30 2017 Nathan Trehout
 */
 
 #include "../include/my.h"

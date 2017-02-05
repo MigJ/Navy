@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:07:28 2017 miguel joubert
-** Last update Thu Feb  2 13:36:54 2017 Joubert Miguel
+** Last update Sun Feb  5 17:13:02 2017 Nathan Trehout
 */
 
 #include "../include/my.h"
@@ -24,10 +24,7 @@ char	**is_touched(char **map, t_vector C)
       if (T.k == C.x)
 	{
 	  if (map[T.i][T.k] == '.')
-	    {
-	      my_putstr("Wrong !\n", 1);
-	      return (NULL);
-	    }
+	    return (NULL);
 	  T.dest[T.j][T.k++] = 'x';
 	}
       T.dest[T.j][T.k] = map[T.i][T.k], T.k++;
@@ -47,9 +44,12 @@ char	**my_position_init(char **map, t_vector C, char c)
   int   k;
 
   k = j = i = 0;
-  dest = malloc(sizeof(char *) * 15);
+  dest = malloc(sizeof(char *) * 20);
   while (i != C.y)
-    dest[j++] = strdup(map[i++]);
+    {
+      dest[j] = strdup(map[i]);
+      j++, i++;
+    }
   dest[j] = malloc(sizeof(char) * 22);
   while (map[i][k])
     {
@@ -62,6 +62,7 @@ char	**my_position_init(char **map, t_vector C, char c)
   while (map[++i])
     dest[++j] = strdup(map[i]);
   dest[j + 1] = NULL;
+  *dest[0] = ' ';
   return (dest);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Thu Feb  2 13:31:24 2017 Joubert Miguel
+** Last update Sun Feb  5 16:58:33 2017 Nathan Trehout
 */
 
 #include "include/my.h"
@@ -35,9 +35,9 @@ int	server_init()
 
   pid_server = getpid();
   my_printf("my_pid: %d\n", pid_server);
-  my_printf("waiting for enemy connexion...\n");
+  my_printf("waiting for enemy connection...\n");
   pid_client = get_pidclient();
-  my_printf("enemy connected\n");
+  my_printf("\nenemy connected\n\n");
   signal(SIGUSR1, sig_handler);
   signal(SIGUSR2, sig_handler);
   if (receive_bit(pid_client) != 44)
@@ -61,10 +61,10 @@ t_elem	init_elem(int ac, char **av, t_elem E)
 t_map	init_map(t_map M, t_elem E)
 {
   M.map_adv = my_init_map();
-  printf("enemy's positions:\n");
-  my_disp_map(M.map_adv);
   M.my_map = my_position(E.buff);
   printf("my positions:\n");
   my_disp_map(M.my_map);
+  printf("\nenemy's positions:\n");
+  my_disp_map(M.map_adv);
   return (M);
 }
