@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Sun Feb  5 16:19:13 2017 Nathan Trehout
+** Last update Sun Feb  5 23:29:16 2017 miguel joubert
 */
 
 #ifndef _NAVY_H
@@ -28,7 +28,7 @@ t_map    init_map(t_map M, t_elem E);
 
 int     help();
 
-void    host(t_elem E, t_map M);
+int    host(t_elem E, t_map M);
 
 t_map   map_aftchd(t_map M, t_elem E, char *str, int cond);
 

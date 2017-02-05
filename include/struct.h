@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:01:49 2017 miguel joubert
-** Last update Wed Feb  1 22:59:02 2017 miguel joubert
+** Last update Sun Feb  5 23:25:45 2017 miguel joubert
 */
 
 #ifndef _STRUCT_H
@@ -35,6 +35,7 @@ typedef struct s_elem
   char  *buff;
   int   i;
   char  *s;
+  int	loose;
   int	win;
   int	a;
   int	b;

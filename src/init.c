@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Sun Feb  5 16:58:33 2017 Nathan Trehout
+** Last update Sun Feb  5 23:26:14 2017 miguel joubert
 */
 
 #include "include/my.h"
@@ -16,13 +16,12 @@ int	client_init(int pid_server)
 {
   int   pid;
 
-
   pid = getpid();
   signal(SIGUSR1, sig_handler);
   signal(SIGUSR2, sig_handler);
-  my_printf("Pid : %d\n", pid);
+  my_printf("my_pid : %d\n", pid);
   kill(pid_server, SIGUSR1);
-  my_printf("successfully connected\n");
+  my_printf("successfully connected\n\n");
   sleep(2);
   send_bit(44, pid_server);
   return (pid_server);
@@ -54,7 +53,7 @@ t_elem	init_elem(int ac, char **av, t_elem E)
   E.buff = malloc(sizeof(char) * 33);
   read(E.fd, E.buff, 32);
   E.buff[31] = 0;
-  E.win = 14;
+  E.win = E.loose = 14;
   return (E);
 }
 
