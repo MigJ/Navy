@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Sun Feb  5 23:36:36 2017 miguel joubert
+** Last update Sun Feb  5 23:40:55 2017 miguel joubert
 */
 
 #include "include/my.h"
@@ -56,7 +56,7 @@ int	host(t_elem E, t_map M)
       E.answer = -1;
       free(E.s);
     }
-  (E.loose == 1) ? printf("Enemy won\n") : printf("I won\n");
+  (E.loose == 1) ? printf("\nEnemy won\n") : printf("\nI won\n");
   return ((E.loose == 1) ? 1 : 0);
 }
 
@@ -87,7 +87,7 @@ int	client(t_elem E, t_map M)
       E.answer = -1;
       free(E.s);
     }
-  (E.loose == 1) ? printf("Enemy won\n") : printf("I won\n");
+  (E.loose == 1) ? printf("\nEnemy won\n") : printf("\nI won\n");
   return ((E.loose == 1) ? 1 : 0);
 }
 
