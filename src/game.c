@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Sun Feb  5 23:40:55 2017 miguel joubert
+** Last update Mon Feb  6 00:48:27 2017 miguel joubert
 */
 
 #include "include/my.h"
@@ -99,9 +99,8 @@ int	main(int ac, char **av)
   if (strcmp(av[1], "-h") == 0) return (help());
   E = init_elem(ac, av, E);
   M = init_map(M, E);
-  if (verify_pos(E.buff) == 1) return (1);
-  else if (verify_hit(E.buff) == 1) return (1);
-  else if (strcmp(av[1], "-h") == 0) return (help());
+  if (verify_pos(E.buff) == 1) return (84);
+  else if (verify_hit(E.buff) == 1) return (84);
   else if (E.i == 1) return (host(E, M));
   else if (E.i == 2)
     if (client(E, M) == 1)

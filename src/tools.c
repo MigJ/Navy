@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:39:04 2017 miguel joubert
-** Last update Sun Feb  5 15:58:17 2017 Nathan Trehout
+** Last update Mon Feb  6 00:20:12 2017 miguel joubert
 */
 
 #include "include/my.h"
@@ -13,10 +13,10 @@
 int	help()
 {
   my_putstr("USAGE\n", 1);
-  my_putstr("           ./navy [fistr_player_pid] navy_positions\n", 1);
+  my_putstr("           ./navy [first_player_pid] navy_positions\n", 1);
   my_putstr("DESCRIPTION\n", 1);
-  my_putstr("           first_player_pid   only for the 2nd player.  pid of\
-the first player,\n           navy_positions     file representing the positi \
+  my_putstr("           first_player_pid   only for the 2nd player.  pid of \
+the first player.\n           navy_positions     file representing the positi\
 ons of the ships.\n", 1);
   return (0);
 }
