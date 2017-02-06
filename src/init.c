@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Mon Feb  6 15:41:55 2017 miguel joubert
+** Last update Mon Feb  6 17:06:35 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -42,16 +42,20 @@ int	server_init()
   return (pid_client);
 }
 
-t_elem	init_elem(int ac, char **av, t_elem E)
+t_elem	init_buff(t_elem E, int ac, char **av)
 {
-  E.pid = (ac == 2) ? server_init() : client_init(my_getnbr(av[1]));
   E.i = (ac == 2) ? 1 : 2;
   if (E.i == 1) E.fd = open(av[1], O_RDONLY);
   else E.fd = open(av[2], O_RDONLY);
-  E.buff = malloc(sizeof(char) * 33);
+  E.buff = malloc(sizeof(char) * 32);
   read(E.fd, E.buff, 32);
   E.buff[31] = 0;
-  E.buff = pars_map(E.buff);
+  return (E);
+}
+
+t_elem	init_elem(t_elem E, int ac, char **av)
+{
+  E.pid = (ac == 2) ? server_init() : client_init(my_getnbr(av[1]));
   E.my_stock = malloc(sizeof(char *) * 100);
   E.adv_stock = malloc(sizeof(char *) * 100);
   E.win = E.loose = 14;

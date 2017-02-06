@@ -5,7 +5,7 @@
 ** Login   <nathan.trehout@epitech.net>
 ** 
 ** Started on  Tue Jan 31 03:42:42 2017 Nathan Trehout
-** Last update Mon Feb  6 15:42:13 2017 miguel joubert
+** Last update Mon Feb  6 16:30:16 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -33,7 +33,6 @@ int	get_pidclient()
 {
   int	pid;
   struct sigaction s_val;
-
 
   sigemptyset(&s_val.sa_mask);
   sigaddset(&s_val.sa_mask, SIGINT);

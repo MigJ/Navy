@@ -5,10 +5,41 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:07:28 2017 miguel joubert
-** Last update Mon Feb  6 15:42:33 2017 miguel joubert
+** Last update Mon Feb  6 17:13:06 2017 miguel joubert
 */
 
 #include "../include/my.h"
+
+int	verify_length(char *buff)
+{
+  int	i;
+  int	j;
+  char	*stock;
+
+  stock = malloc(sizeof(char) * 6);
+  j = i = 0;
+  *stock = *buff;
+  while (buff[i])
+    {
+      if (buff[i] == '\n')
+	stock[++j] = buff[i + 1];
+      i++;
+    }
+  stock[++j] = 0;
+  i = 0;
+  j = 1;
+  while (stock[i])
+    {
+      while (stock[j])
+	{
+	  if (stock[i] == stock[j++] || (stock[i] >= '5' && stock[i] <= '2'))
+	    return (1);
+	}
+      i++;
+      j = i + 1;
+    }
+  return (0);
+}
 
 char	*pars_map_line(char *buff)
 {

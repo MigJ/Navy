@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:30:06 2017 miguel joubert
-** Last update Mon Feb  6 15:43:16 2017 miguel joubert
+** Last update Mon Feb  6 17:19:59 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -69,7 +69,7 @@ int	verify_hit(char *buff)
 
   if (buff == NULL || *buff == 0) return (0);
   H = init_case(H);
-  while (H.i != 13)
+  while (H.i != 29)
     {
       if (buff[H.i] != buff[H.i + 3] && H.bol == 0) H = case_cpy(buff, H);
       else if (buff[H.i + 4] - buff[H.i + 1] != 1

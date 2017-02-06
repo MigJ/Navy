@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Mon Feb  6 15:46:14 2017 miguel joubert
+** Last update Mon Feb  6 17:05:35 2017 miguel joubert
 */
 
 #ifndef _NAVY_H
@@ -20,6 +20,10 @@
 #include <stdlib.h>
 #include <signal.h>
 #include "struct.h"
+
+int	verify_length(char *buff);
+
+t_elem  init_buff(t_elem E, int ac, char **av);
 
 void    sig_handler(int sig);
 
@@ -43,7 +47,7 @@ int	is_played(char **all_cases);
 
 t_hit   init_case(t_hit H);
 
-t_elem  init_elem(int ac, char **av, t_elem E);
+t_elem  init_elem(t_elem E, int ac, char **av);
 
 t_map    init_map(t_map M, t_elem E);
 
