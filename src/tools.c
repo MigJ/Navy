@@ -5,10 +5,10 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:39:04 2017 miguel joubert
-** Last update Mon Feb  6 14:47:08 2017 Nathan Trehout
+** Last update Mon Feb  6 15:32:32 2017 miguel joubert
 */
 
-#include "../include/my.h"
+#include "my.h"
 
 int	help()
 {

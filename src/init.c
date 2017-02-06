@@ -5,12 +5,12 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Mon Feb  6 13:01:37 2017 miguel joubert
+** Last update Mon Feb  6 15:30:37 2017 miguel joubert
 */
 
-#include "include/my.h"
-#include "include/libs.h"
-#include "include/proto.h"
+#include "my.h"
+#include "libs.h"
+#include "proto.h"
 
 int	client_init(int pid_server)
 {

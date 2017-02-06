@@ -8,7 +8,7 @@ SRC	=	src/*.c
 
 LIB	=
 
-CFLAGS	=	-I./includes/ -W -Wall -Wextra -pedantic
+CFLAGS	=	-I./include/ -W -Wall -Wextra -pedantic
 
 RM	=	rm -fr
 
