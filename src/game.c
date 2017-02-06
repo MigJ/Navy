@@ -5,12 +5,10 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Mon Feb  6 15:31:38 2017 miguel joubert
+** Last update Mon Feb  6 15:41:39 2017 miguel joubert
 */
 
-#include "my.h"
-#include "libs.h"
-#include "proto.h"
+#include "../include/my.h"
 
 t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
 {

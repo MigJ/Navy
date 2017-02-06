@@ -5,11 +5,10 @@
 ** Login   <nathan.trehout@epitech.net>
 ** 
 ** Started on  Tue Jan 31 03:42:42 2017 Nathan Trehout
-** Last update Mon Feb  6 15:31:53 2017 miguel joubert
+** Last update Mon Feb  6 15:42:13 2017 miguel joubert
 */
 
-#include "libs.h"
-#include "proto.h"
+#include "../include/my.h"
 
 static int	sig_detected = -1;
 

@@ -5,10 +5,10 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:07:28 2017 miguel joubert
-** Last update Mon Feb  6 15:32:17 2017 miguel joubert
+** Last update Mon Feb  6 15:42:33 2017 miguel joubert
 */
 
-#include "my.h"
+#include "../include/my.h"
 
 char	*pars_map_line(char *buff)
 {

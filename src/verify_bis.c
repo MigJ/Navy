@@ -5,10 +5,10 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:09:28 2017 miguel joubert
-** Last update Mon Feb  6 15:32:40 2017 miguel joubert
+** Last update Mon Feb  6 15:42:56 2017 miguel joubert
 */
 
-#include "my.h"
+#include "../include/my.h"
 
 int	is_played(char **all_cases)
 {

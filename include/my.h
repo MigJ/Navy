@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Mon Feb  6 12:27:44 2017 miguel joubert
+** Last update Mon Feb  6 15:46:14 2017 miguel joubert
 */
 
 #ifndef _NAVY_H
@@ -18,7 +18,26 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <signal.h>
 #include "struct.h"
+
+void    sig_handler(int sig);
+
+void HandleSignal(int sig, siginfo_t *si, void *context);
+
+int     get_pidclient();
+
+unsigned int     receive_bit(pid_t pid_client);
+
+int     server_init();
+
+void    send_bit(unsigned int    nb, int pid_server);
+
+int     client_init(int pid_server);
+
+int     my_getnbr(char *str);
+
+int     my_printf(char *str, ...);
 
 int	is_played(char **all_cases);
 
