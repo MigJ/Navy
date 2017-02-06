@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:09:28 2017 miguel joubert
-** Last update Mon Feb  6 11:38:45 2017 miguel joubert
+** Last update Mon Feb  6 13:07:56 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -39,6 +39,7 @@ int	verify_pos(char *buff)
   if (*buff == 0) return (0);
   value = 5;
   if (buff[31] != 0) return (1);
+  buff = pars_map(buff);
   while (value != 37)
     {
       if ((buff[value] - 48) - (buff[value - 3] - 48)

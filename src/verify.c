@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:30:06 2017 miguel joubert
-** Last update Thu Feb  2 13:26:41 2017 Joubert Miguel
+** Last update Mon Feb  6 13:01:17 2017 miguel joubert
 */
 
 #include "include/my.h"
@@ -14,7 +14,7 @@ t_hit	init_case(t_hit H)
 {
   H.pos = H.bol = H.j = H.k = 0;
   H.i = 2;
-  H.all_case = malloc(sizeof(char *) * 15);
+  H.all_case = malloc(sizeof(char *) * 30);
   return (H);
 }
 
@@ -23,7 +23,7 @@ t_hit	case_cpy(char *buff, t_hit H)
   H.tmp = (buff[H.i + 3] - 48) - (buff[H.i] - 48);
   while (H.pos != H.tmp - 1)
     {
-      H.all_case[H.j] = malloc(sizeof(char) * 3);
+      H.all_case[H.j] = malloc(sizeof(char) * 4);
       H.all_case[H.j][H.k++] = buff[H.i] + H.pos + 1;
       H.all_case[H.j][H.k++] = buff[H.i + 1];
       H.all_case[H.j][H.k] = 0;
@@ -39,7 +39,7 @@ t_hit	case_cpy_second(char *buff, t_hit H)
   H.tmp = buff[H.i + 4] - buff[H.i + 1];
   while (H.pos != H.tmp - 1)
     {
-      H.all_case[H.j] = malloc(sizeof(char) * 3);
+      H.all_case[H.j] = malloc(sizeof(char) * 4);
       H.all_case[H.j][H.k++] = buff[H.i];
       H.all_case[H.j][H.k++] = buff[H.i + 1] + H.pos + 1;
       H.all_case[H.j][H.k] = 0;
@@ -52,7 +52,7 @@ t_hit	case_cpy_second(char *buff, t_hit H)
 
 t_hit	case_cpy_third(char *buff, t_hit H)
 {
-  H.all_case[H.j] = malloc(sizeof(char) * 3);
+  H.all_case[H.j] = malloc(sizeof(char) * 4);
   H.all_case[H.j][H.k++] = buff[H.i];
   H.all_case[H.j][H.k++] = buff[H.i + 1];
   H.all_case[H.j][H.k] = 0;

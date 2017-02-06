@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Mon Feb  6 11:06:48 2017 miguel joubert
+** Last update Mon Feb  6 12:27:44 2017 miguel joubert
 */
 
 #ifndef _NAVY_H
@@ -77,5 +77,7 @@ char    **my_init_map();
 char    *my_strcat(char *dest, char *src);
 
 char	*pars_case(char *buff);
+
+char    *pars_map(char *buff);
 
 #endif /* _NAVY_H */

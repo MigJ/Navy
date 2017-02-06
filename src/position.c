@@ -5,10 +5,85 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:07:28 2017 miguel joubert
-** Last update Sun Feb  5 17:13:02 2017 Nathan Trehout
+** Last update Mon Feb  6 13:28:02 2017 miguel joubert
 */
 
 #include "../include/my.h"
+
+char    *pars_map_lowcase(char *buff)
+{
+  char  *dest;
+  int   i;
+
+  i = 0;
+  dest = malloc(sizeof(char) * 32);
+  dest = strdup(buff);
+  while (dest[i])
+    {
+      if (dest[i] <= 'z' && dest[i] >= 'a')
+	dest[i] -= 32;
+      i++;
+    }
+  return (dest);
+}
+
+char    *pars_map_order(char *buff)
+{
+  char  *dest;
+  char  tmp;
+  int   i;
+
+  i = 2;
+  dest = malloc(sizeof(char) * 32);
+  dest = pars_map_lowcase(buff);
+  while (i < 27)
+    {
+      if ((dest[i] >= '1' && dest[i] <= '8')
+	  && (dest[i + 1] >= 'A' && dest[i + 1] <= 'Z'))
+	{
+	  tmp = dest[i];
+	  dest[i] = dest[i + 1];
+	  dest[i + 1] = tmp;
+	}
+      if ((dest[i + 3] >= '1' && dest[i + 3] <= '8')
+	  && (dest[i + 4] >= 'A' && dest[i + 4] <= 'Z'))
+	{
+	  tmp = dest[i + 3];
+	  dest[i + 3] = dest[i + 4];
+	  dest[i + 4] = tmp;
+	}
+      i += 8;
+    }
+  return (dest);
+}
+
+char	*pars_map(char *buff)
+{
+  char	*dest;
+  char	tmp;
+  int	i;
+
+  i = 2;
+  dest = malloc(sizeof(char) * 32);
+  dest = pars_map_order(buff);
+  while (i < 27)
+    {
+      if (dest[i] > dest[i + 3])
+	{
+	  tmp = dest[i];
+	  dest[i] = dest[i + 3];
+	  dest[i + 3] = tmp;
+	}
+      if (dest[i + 1] > dest[i + 4])
+	{
+          tmp = dest[i + 1];
+	  dest[i + 1] = dest[i + 4];
+	  dest[i + 4] = tmp;
+	}
+      i += 8;
+    }
+  return (dest);
+}
 
 char	**is_touched(char **map, t_vector C)
 {
