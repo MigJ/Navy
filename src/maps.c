@@ -5,10 +5,10 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:42:57 2017 miguel joubert
-** Last update Mon Feb  6 12:16:14 2017 miguel joubert
+** Last update Mon Feb  6 14:47:01 2017 Nathan Trehout
 */
 
-#include "include/my.h"
+#include "../include/my.h"
 
 t_vector	convert_co_char(char *number)
 {

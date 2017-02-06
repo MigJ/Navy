@@ -5,10 +5,10 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:30:06 2017 miguel joubert
-** Last update Mon Feb  6 13:01:17 2017 miguel joubert
+** Last update Mon Feb  6 14:47:19 2017 Nathan Trehout
 */
 
-#include "include/my.h"
+#include "../include/my.h"
 
 t_hit	init_case(t_hit H)
 {
