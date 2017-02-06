@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:09:28 2017 miguel joubert
-** Last update Mon Feb  6 17:07:38 2017 miguel joubert
+** Last update Mon Feb  6 17:38:55 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -55,9 +55,21 @@ int	verify_pos(char *buff)
 
 int	verify_exist(char *buff)
 {
+  if (buff == NULL)
+    {
+      my_putstr("wrong position\n", 1);
+      my_putstr("attack: ", 1);
+      return (1);
+    }
+  else if (*buff == 0 || buff[1] == 0 || *buff == ' ' || buff[1] == ' ')
+    {
+      my_putstr(strcat(buff, "\n"), 1);
+      my_putstr("wrong position\n", 1);
+      my_putstr("attack: ", 1);
+      return (1);
+    }
   buff = pars_case(buff);
-  if (*buff > 'H' || buff[1] > '8' ||
-      *buff == 0 || buff[1] == 0 || *buff == ' ')
+  if (*buff > 'H' || buff[1] > '8')
     {
       my_putstr(strcat(buff, "\n"), 1);
       my_putstr("wrong position\n", 1);
