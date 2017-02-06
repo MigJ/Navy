@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Sun Feb  5 23:26:14 2017 miguel joubert
+** Last update Mon Feb  6 11:12:04 2017 miguel joubert
 */
 
 #include "include/my.h"
@@ -53,7 +53,10 @@ t_elem	init_elem(int ac, char **av, t_elem E)
   E.buff = malloc(sizeof(char) * 33);
   read(E.fd, E.buff, 32);
   E.buff[31] = 0;
+  E.my_stock = malloc(sizeof(char *) * 100);
+  E.adv_stock = malloc(sizeof(char *) * 100);
   E.win = E.loose = 14;
+  E.j = 0;
   return (E);
 }
 

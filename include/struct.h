@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:01:49 2017 miguel joubert
-** Last update Sun Feb  5 23:25:45 2017 miguel joubert
+** Last update Mon Feb  6 11:11:04 2017 miguel joubert
 */
 
 #ifndef _STRUCT_H
@@ -34,7 +34,10 @@ typedef struct s_elem
   int   pid;
   char  *buff;
   int   i;
+  int	j;
   char  *s;
+  char	**my_stock;
+  char	**adv_stock;
   int	loose;
   int	win;
   int	a;

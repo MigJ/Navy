@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Mon Feb  6 01:16:03 2017 miguel joubert
+** Last update Mon Feb  6 11:06:48 2017 miguel joubert
 */
 
 #ifndef _NAVY_H
@@ -19,6 +19,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "struct.h"
+
+int	is_played(char **all_cases);
 
 t_hit   init_case(t_hit H);
 

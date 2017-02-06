@@ -5,10 +5,32 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:09:28 2017 miguel joubert
-** Last update Sun Feb  5 16:36:30 2017 Nathan Trehout
+** Last update Mon Feb  6 11:38:45 2017 miguel joubert
 */
 
 #include "../include/my.h"
+
+int	is_played(char **all_cases)
+{
+  int	i;
+  int	j;
+
+  i = 0;
+  j = 1;
+  while (all_cases[i])
+    {
+      while (all_cases[j])
+	{
+	  if (strcmp(all_cases[i], all_cases[j]) == 0)
+	    return (1);
+	  else
+	    j++;
+	}
+      i++;
+      j = i + 1;
+    }
+  return (0);
+}
 
 int	verify_pos(char *buff)
 {
