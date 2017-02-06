@@ -5,10 +5,48 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:07:28 2017 miguel joubert
-** Last update Mon Feb  6 13:28:02 2017 miguel joubert
+** Last update Mon Feb  6 15:12:32 2017 miguel joubert
 */
 
 #include "../include/my.h"
+
+char	*pars_map_line(char *buff)
+{
+  char	*dest;
+  char	**tmp;
+  int	tmp_i;
+  int	i;
+  int	j;
+  int	k;
+
+  i = j = k = 0;
+  dest = malloc(sizeof(char) * 32);
+  tmp = malloc(sizeof(char *) * 10);
+  while (i != 32)
+    {
+      tmp_i = i;
+      tmp[buff[tmp_i] - 48] = malloc(sizeof(char) * 10);
+      while (i != tmp_i + 7)
+	tmp[buff[tmp_i] - 48][j++] = buff[i++];
+      i++;
+      tmp[buff[tmp_i] - 48][j] = '\n';
+      tmp[buff[tmp_i] - 48][++j] = 0;
+      j = 0;
+    }
+  tmp[5][7] = 0;
+  tmp[6] = NULL;
+  j = 2;
+  i = 0;
+  while (tmp[j])
+    {
+      while (tmp[j][k])
+	dest[i++] = tmp[j][k++];
+      j++;
+      k = 0;
+    }
+  dest[i] = 0;
+  return (dest);
+}
 
 char    *pars_map_lowcase(char *buff)
 {
@@ -17,7 +55,7 @@ char    *pars_map_lowcase(char *buff)
 
   i = 0;
   dest = malloc(sizeof(char) * 32);
-  dest = strdup(buff);
+  dest = pars_map_line(buff);
   while (dest[i])
     {
       if (dest[i] <= 'z' && dest[i] >= 'a')
