@@ -1,4 +1,4 @@
-cd ~/delivery/PSU_2016_navy/PSU_2016_navy/
+cd ~/delivery/PSU/PSU_2016_navy/PSU_2016_navy/
 git add --all
 git commit -m $1
 echo $1
