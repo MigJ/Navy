@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Mon Feb  6 17:41:36 2017 miguel joubert
+** Last update Wed Feb  8 16:21:06 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -14,7 +14,7 @@ t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
 {
   if (cond == 2)
     {
-      printf("%c%d\n", E.s[0], E.s[1] - 48);
+      //      printf("%c%d\n", E.s[0], E.s[1] - 48);
       printf("%c%d: %s\n", E.s[0], E.s[1] - 48, str);
       if (is_played(E.my_stock) == 0)
 	M.map_adv = (strcmp(str, "hit") == 0) ?
