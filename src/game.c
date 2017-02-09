@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb  9 15:00:27 2017 miguel joubert
+** Last update Thu Feb  9 15:06:06 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -19,7 +19,7 @@ t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
       write(1, &(E.s[0]), 1);
       write(1, &(E.s[1]), 1);
       write(1, ": ", 2);
-      puts(str);
+      write(1, str, strlen(str));
       if (is_played(E.my_stock) == 0)
 	M.map_adv = (strcmp(str, "hit") == 0) ?
 	  my_position_init(M.map_adv, convert_co_int(E.s[0] - 64, E.s[1] - 48), 'x') :
@@ -32,7 +32,7 @@ t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
       c = E.b + 48;
       write(1, &c, 1);
       write(1, ": ", 2);
-      puts(str);
+      write(1, str, strlen(str));
       write(1, "\n", 1);
       //      printf("%c%d: %s\n\n", E.a + 64, E.b, str);
       if (is_played(E.adv_stock) == 0)
