@@ -1,11 +1,11 @@
 /*
-1;4600;0c** main.c for  in /home/miguel.joubert/delivery/PSU_2016_navy
+1;4600;0c1;4600;0c** main.c for  in /home/miguel.joubert/delivery/PSU_2016_navy
 ** 
 ** Made by miguel joubert
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb  9 16:43:27 2017 miguel joubert
+** Last update Thu Feb  9 17:00:45 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -55,7 +55,7 @@ int	host(t_elem E, t_map M)
       E.s = pars_case(E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
       if (E.s != NULL) E.my_stock[E.j + 1] = NULL;
-      usleep(5000);
+      usleep(3000);
       if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
       if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
       //printf("En attente...\n");
@@ -115,7 +115,7 @@ int	client(t_elem E, t_map M)
       //printf("Voila après le parse : %s\n", E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
       if (E.s != NULL) E.my_stock[++E.j] = NULL;
-      usleep(5000);
+      usleep(3000);
       if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
       if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
       //printf("En attente...\n");
