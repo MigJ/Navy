@@ -5,7 +5,7 @@
 ** Login   <nathan.trehout@epitech.net>
 ** 
 ** Started on  Tue Jan 31 03:42:42 2017 Nathan Trehout
-** Last update Thu Feb  9 14:59:58 2017 miguel joubert
+** Last update Thu Feb  9 17:13:48 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -68,7 +68,7 @@ unsigned int	receive_bit(pid_t pid_client)
 	  //	  printf("1");
 	}
       kill(pid_client, SIGUSR1);
-      //usleep(1000);
+      usleep(3000);
       sig_detected = -1;
       i++;
     }
@@ -87,7 +87,7 @@ void	send_bit(unsigned int	nb, int pid_server)
   nb = ((nb >> 16) & 0xffffu) | ((nb & 0xffffu) << 16);
   while (i < 32)
     {
-      // usleep(5000);
+      usleep(5000);
       if (nb % 2 == 0)
 	kill(pid_server, SIGUSR1);
       else

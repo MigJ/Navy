@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb  9 17:00:45 2017 miguel joubert
+** Last update Thu Feb  9 17:16:53 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -51,12 +51,14 @@ int	host(t_elem E, t_map M)
     {
       my_putstr("\nattack: ", 1);
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
+
       //printf("Voila le texte : %s\n", E.s);
       E.s = pars_case(E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
       if (E.s != NULL) E.my_stock[E.j + 1] = NULL;
-      usleep(3000);
+
       if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
+
       if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
       //printf("En attente...\n");
       E.answer = receive_bit(E.pid);
@@ -67,7 +69,7 @@ int	host(t_elem E, t_map M)
       write(1, "\nwaiting for enemy's attack...\n", strlen("\nwaiting for enemy's attack...\n"));
       E.a = receive_bit(E.pid);
       E.b = receive_bit(E.pid);
-      //usleep(10000);
+      usleep(1000);
       E.adv_stock[E.j] = malloc(sizeof(char) * 3);
       *E.adv_stock[E.j] = E.a - 64;
       E.adv_stock[E.j][1] = E.b - 48;
@@ -102,7 +104,7 @@ int	client(t_elem E, t_map M)
       E.adv_stock[E.j][1] = E.b + 48;
       E.adv_stock[E.j][2] = 0;
       E.adv_stock[E.j + 1] = NULL;
-      //usleep(1000);
+      usleep(1000);
       if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, "missed", 0);
@@ -110,12 +112,13 @@ int	client(t_elem E, t_map M)
       if (E.win == 0) return (0);
       write(1, "attack: ", strlen("attack: "));
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
+      
       //printf("Voila le texte : %s\n", E.s);
       E.s = pars_case(E.s);
       //printf("Voila après le parse : %s\n", E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
       if (E.s != NULL) E.my_stock[++E.j] = NULL;
-      usleep(3000);
+      
       if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
       if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
       //printf("En attente...\n");
