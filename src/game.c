@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb  9 10:23:09 2017 miguel joubert
+** Last update Thu Feb  9 10:32:39 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -87,13 +87,15 @@ int	client(t_elem E, t_map M)
     {
       write(1, "\nwaiting for enemy's attack...\n", strlen("\nwaiting for enemy's attack...\n"));
       E.a = receive_bit(E.pid);
+      usleep(1000);
       E.b = receive_bit(E.pid);
+      usleep(1000);
       E.adv_stock[E.j] = malloc(sizeof(char) * 3);
       *E.adv_stock[E.j] = E.a + 64;
       E.adv_stock[E.j][1] = E.b + 48;
       E.adv_stock[E.j][2] = 0;
       E.adv_stock[E.j + 1] = NULL;
-      usleep(10000);
+      usleep(1000);
       if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, "missed", 0);
@@ -104,7 +106,9 @@ int	client(t_elem E, t_map M)
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
       if (E.s != NULL) E.my_stock[++E.j] = NULL;
       if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
+      usleep(1000);
       if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
+      usleep(1000);
       E.answer = receive_bit(E.pid);
       if (E.answer == 1 && is_played(E.my_stock) == 0) M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1) M = map_aftchd(M, E, strdup("missed"), 2);
