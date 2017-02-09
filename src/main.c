@@ -1,11 +1,11 @@
 /*
-** main.c for navy in /home/nathan.trehout/delivery/PSU_2016_navy/src
+1;4600;0c** main.c for navy in /home/nathan.trehout/delivery/PSU_2016_navy/src
 ** 
 ** Made by Nathan Trehout
 ** Login   <nathan.trehout@epitech.net>
 ** 
 ** Started on  Tue Jan 31 03:42:42 2017 Nathan Trehout
-** Last update Thu Feb  9 09:27:10 2017 miguel joubert
+** Last update Thu Feb  9 09:34:55 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -40,6 +40,7 @@ int	get_pidclient()
   s_val.sa_sigaction = handle_signal;
   sigaction(SIGUSR1, &s_val, NULL);
   sigaction(SIGUSR2, &s_val, NULL);
+  usleep(1000);
   while (sig_detected == -1);
   pid = sig_detected;
   sig_detected = -1;
