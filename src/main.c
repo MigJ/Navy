@@ -1,11 +1,11 @@
 /*
-** main.c for navy in /home/nathan.trehout/delivery/PSU_2016_navy/src
+1;4600;0c** main.c for navy in /home/nathan.trehout/delivery/PSU_2016_navy/src
 ** 
 ** Made by Nathan Trehout
 ** Login   <nathan.trehout@epitech.net>
 ** 
 ** Started on  Tue Jan 31 03:42:42 2017 Nathan Trehout
-** Last update Thu Feb  9 14:31:03 2017 miguel joubert
+** Last update Thu Feb  9 14:59:58 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -58,9 +58,15 @@ unsigned int	receive_bit(pid_t pid_client)
       pause();
       nb <<= 1;
       if (sig_detected == 0)
-	nb += 0;
+	{
+	  nb += 0;
+	  //	  printf("0");
+	}
       else if (sig_detected == 1)
-	nb += 1;
+	{
+	  nb += 1;
+	  //	  printf("1");
+	}
       kill(pid_client, SIGUSR1);
       //usleep(1000);
       sig_detected = -1;
@@ -85,8 +91,7 @@ void	send_bit(unsigned int	nb, int pid_server)
       if (nb % 2 == 0)
 	kill(pid_server, SIGUSR1);
       else
-	kill(pid_server, SIGUSR2);
-      
+	kill(pid_server, SIGUSR2);      
       pause();
       sig_detected = 0;
       i++;

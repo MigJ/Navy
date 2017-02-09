@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Thu Feb  9 10:11:30 2017 miguel joubert
+** Last update Thu Feb  9 14:57:18 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -14,6 +14,7 @@ int	client_init(int pid_server)
 {
   int   pid;
 
+  usleep(1000);
   pid = getpid();
   signal(SIGUSR1, sig_handler);
   signal(SIGUSR2, sig_handler);

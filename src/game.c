@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb  9 14:21:33 2017 miguel joubert
+** Last update Thu Feb  9 15:00:27 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -50,14 +50,16 @@ int	host(t_elem E, t_map M)
     {
       my_putstr("\nattack: ", 1);
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
+      //printf("Voila le texte : %s\n", E.s);
       E.s = pars_case(E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
       if (E.s != NULL) E.my_stock[E.j + 1] = NULL;
       if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
 
       if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
-
+      //printf("En attente...\n");
       E.answer = receive_bit(E.pid);
+      //printf("\nOk\n");
       if (E.answer == 1 && is_played(E.my_stock) == 0) M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1) M = map_aftchd(M, E, strdup("missed"), 2);
       write(1, "\nwaiting for enemy's attack...\n", strlen("\nwaiting for enemy's attack...\n"));
@@ -104,14 +106,16 @@ int	client(t_elem E, t_map M)
       if (E.win == 0) return (0);
       write(1, "attack: ", strlen("attack: "));
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
+      //printf("Voila le texte : %s\n", E.s);
       E.s = pars_case(E.s);
+      //printf("Voila après le parse : %s\n", E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
       if (E.s != NULL) E.my_stock[++E.j] = NULL;
       if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
-
       if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
-
+      //printf("En attente...\n");
       E.answer = receive_bit(E.pid);
+      //printf("\nOk\n");
       if (E.answer == 1 && is_played(E.my_stock) == 0) M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1) M = map_aftchd(M, E, strdup("missed"), 2);
       write(1, "\nmy positions:\n", strlen("\nmy positions:\n"));
