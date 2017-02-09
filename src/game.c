@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb  9 16:18:15 2017 miguel joubert
+** Last update Thu Feb  9 16:33:02 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -137,6 +137,8 @@ int	main(int ac, char **av)
   t_elem	E;
   static t_map	M;
 
+  if (ac < 2)
+    return (84);
   if (strcmp(av[1], "-h") == 0) return (help());
   E = init_buff(E, ac, av);
   if (verify_length(E.buff) == 1) return (84);
