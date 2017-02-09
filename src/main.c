@@ -5,7 +5,7 @@
 ** Login   <nathan.trehout@epitech.net>
 ** 
 ** Started on  Tue Jan 31 03:42:42 2017 Nathan Trehout
-** Last update Thu Feb  9 09:20:58 2017 miguel joubert
+** Last update Thu Feb  9 09:27:10 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -62,6 +62,7 @@ unsigned int	receive_bit(pid_t pid_client)
 	nb += 1;
       usleep(30000);
       kill(pid_client, SIGUSR1);
+      usleep(1000);
       sig_detected = -1;
       i++;
     }
