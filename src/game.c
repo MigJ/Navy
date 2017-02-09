@@ -1,18 +1,18 @@
 /*
-** main.c for  in /home/miguel.joubert/delivery/PSU_2016_navy
+1;4600;0c** main.c for  in /home/miguel.joubert/delivery/PSU_2016_navy
 ** 
 ** Made by miguel joubert
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb  9 16:33:02 2017 miguel joubert
+** Last update Thu Feb  9 16:43:27 2017 miguel joubert
 */
 
 #include "../include/my.h"
 
 t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
 {
-  usleep(1000);
+  //  usleep(1000);
   if (cond == 2)
     {
       //      printf("%c%d\n", E.s[0], E.s[1] - 48);
@@ -55,6 +55,7 @@ int	host(t_elem E, t_map M)
       E.s = pars_case(E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
       if (E.s != NULL) E.my_stock[E.j + 1] = NULL;
+      usleep(5000);
       if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
       if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
       //printf("En attente...\n");
@@ -66,7 +67,7 @@ int	host(t_elem E, t_map M)
       write(1, "\nwaiting for enemy's attack...\n", strlen("\nwaiting for enemy's attack...\n"));
       E.a = receive_bit(E.pid);
       E.b = receive_bit(E.pid);
-      //      usleep(10000);
+      //usleep(10000);
       E.adv_stock[E.j] = malloc(sizeof(char) * 3);
       *E.adv_stock[E.j] = E.a - 64;
       E.adv_stock[E.j][1] = E.b - 48;
@@ -114,6 +115,7 @@ int	client(t_elem E, t_map M)
       //printf("Voila après le parse : %s\n", E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
       if (E.s != NULL) E.my_stock[++E.j] = NULL;
+      usleep(5000);
       if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
       if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
       //printf("En attente...\n");
