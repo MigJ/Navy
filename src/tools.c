@@ -5,10 +5,15 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:39:04 2017 miguel joubert
-** Last update Mon Feb  6 15:42:42 2017 miguel joubert
+** Last update Thu Feb  9 10:13:33 2017 miguel joubert
 */
 
 #include "../include/my.h"
+
+void	my_putchar(char c)
+{
+  write(1, &c, 1);
+}
 
 int	help()
 {
@@ -97,4 +102,27 @@ size_t	my_strlen(char *str)
   while (str[i])
     i++;
   return (i);
+}
+
+void     my_put_nbr(int nb)
+{
+  int   mod;
+
+  if (nb < 0)
+    {
+      my_putchar('-');
+      nb = nb * (-1);
+    }
+  if (nb >= 0)
+    {
+      if (nb >= 10)
+	{
+	  mod = (nb % 10);
+	  nb = (nb - mod) / 10;
+	  my_put_nbr(nb);
+	  my_putchar(48 + mod);
+	}
+      else
+	my_putchar(48 + nb % 10);
+    }
 }

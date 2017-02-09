@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Mon Feb  6 17:05:35 2017 miguel joubert
+** Last update Thu Feb  9 10:13:42 2017 miguel joubert
 */
 
 #ifndef _NAVY_H
@@ -20,6 +20,8 @@
 #include <stdlib.h>
 #include <signal.h>
 #include "struct.h"
+
+void     my_put_nbr(int nb);
 
 int	verify_length(char *buff);
 

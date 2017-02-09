@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb  9 09:16:52 2017 miguel joubert
+** Last update Thu Feb  9 10:23:09 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -15,7 +15,11 @@ t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
   if (cond == 2)
     {
       //      printf("%c%d\n", E.s[0], E.s[1] - 48);
-      printf("%c%d: %s\n", E.s[0], E.s[1] - 48, str);
+      //printf("%c%d: %s\n", E.s[0], E.s[1] - 48, str);
+      write(1, &(E.s[0]), 1);
+      write(1, &(E.s[1]), 1);
+      write(1, ": ", 2);
+      puts(str);
       if (is_played(E.my_stock) == 0)
 	M.map_adv = (strcmp(str, "hit") == 0) ?
 	  my_position_init(M.map_adv, convert_co_int(E.s[0] - 64, E.s[1] - 48), 'x') :
@@ -23,7 +27,14 @@ t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
     }
   else
     {
-      printf("%c%d: %s\n\n", E.a + 64, E.b, str);
+      char c = E.a + 64;
+      write(1, &c, 1);
+      c = E.b + 48;
+      write(1, &c, 1);
+      write(1, ": ", 2);
+      puts(str);
+      write(1, "\n", 1);
+      //      printf("%c%d: %s\n\n", E.a + 64, E.b, str);
       if (is_played(E.adv_stock) == 0)
 	M.my_map = (cond == 1 && is_played(E.my_stock) == 0)
 	  ? my_position_init(M.my_map, convert_co_int(E.a, E.b), 'x')
@@ -47,7 +58,7 @@ int	host(t_elem E, t_map M)
       E.answer = receive_bit(E.pid);
       if (E.answer == 1 && is_played(E.my_stock) == 0) M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1) M = map_aftchd(M, E, strdup("missed"), 2);
-      printf("\nwaiting for enemy's attack...\n");
+      write(1, "\nwaiting for enemy's attack...\n", strlen("\nwaiting for enemy's attack...\n"));
       E.a = receive_bit(E.pid);
       E.b = receive_bit(E.pid);
       usleep(10000);
@@ -59,14 +70,14 @@ int	host(t_elem E, t_map M)
       if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, strdup("missed"), 0);
-      printf("my positions:\n");
+      write(1, "my positions:\n", strlen("my positions:\n"));
       my_disp_map(M.my_map);
-      printf("\nenemy's positions:\n");
+      write(1, "\nenemy's positions:\n", strlen("\nenemy's positions:\n"));
       my_disp_map(M.map_adv);
       E.answer = -1;
       free(E.s);
     }
-  (E.loose == 1) ? printf("\nEnemy won\n") : printf("\nI won\n");
+  (E.loose == 1) ? write(1, "\nEnemy won\n", strlen("\nEnemy won\n")) : write(1, "\nI won\n", strlen("\nI won\n"));
   return ((E.loose == 1) ? 1 : 0);
 }
 
@@ -74,7 +85,7 @@ int	client(t_elem E, t_map M)
 {
   while (E.loose != 1 && E.win != 1)
     {
-      printf("\nwaiting for enemy's attack...\n");
+      write(1, "\nwaiting for enemy's attack...\n", strlen("\nwaiting for enemy's attack...\n"));
       E.a = receive_bit(E.pid);
       E.b = receive_bit(E.pid);
       E.adv_stock[E.j] = malloc(sizeof(char) * 3);
@@ -87,7 +98,7 @@ int	client(t_elem E, t_map M)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, "missed", 0);
       if (E.win == 0) return (0);
-      my_putstr("attack: ", 1);
+      write(1, "attack: ", strlen("attack: "));
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
       E.s = pars_case(E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
@@ -97,14 +108,14 @@ int	client(t_elem E, t_map M)
       E.answer = receive_bit(E.pid);
       if (E.answer == 1 && is_played(E.my_stock) == 0) M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1) M = map_aftchd(M, E, strdup("missed"), 2);
-      printf("\nmy positions:\n");
+      write(1, "\nmy positions:\n", strlen("\nmy positions:\n"));
       my_disp_map(M.my_map);
-      printf("\nenemy's positions:\n");
+      write(1, "\nenemy's positions:\n", strlen("\nenemy's positions:\n"));
       my_disp_map(M.map_adv);
       E.answer = -1;
       free(E.s);
     }
-  (E.loose == 1) ? printf("\nEnemy won\n") : printf("\nI won\n");
+  (E.loose == 1) ? write(1, "\nEnemy won\n", strlen("\nEnemy won\n")) : write(1, "\nI won\n", strlen("\nI won\n"));
   return ((E.loose == 1) ? 1 : 0);
 }
 

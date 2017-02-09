@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Thu Feb  9 09:12:19 2017 miguel joubert
+** Last update Thu Feb  9 10:11:30 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -17,10 +17,12 @@ int	client_init(int pid_server)
   pid = getpid();
   signal(SIGUSR1, sig_handler);
   signal(SIGUSR2, sig_handler);
-  printf("my_pid : %d\n", pid);
+  write(1, "my_pid : ", strlen("my_pid : "));
+  my_put_nbr(pid);
+  write(1, "\n", 1);
   kill(pid_server, SIGUSR1);
   pause();
-  printf("successfully connected\n\n");
+  write(1, "successfully connected\n\n", strlen("successfully connected\n\n"));
   //send_bit(44, pid_server);
   return (pid_server);
 }
@@ -31,11 +33,13 @@ int	server_init()
   pid_t pid_server;
 
   pid_server = getpid();
-  printf("my_pid: %d\n", pid_server);
-  printf("waiting for enemy connection...\n");
+  write(1, "my_pid : ", strlen("my_pid : "));
+  my_put_nbr(pid_server);
+  write(1, "\n", 1);
+  write(1, "waiting for enemy connection...\n", strlen("waiting for enemy connection...\n"));
   pid_client = get_pidclient();
   kill(pid_client, SIGUSR1);
-  printf("enemy connected\n\n");
+  write(1, "enemy connected\n\n", strlen("enemy connected\n\n"));
   signal(SIGUSR1, sig_handler);
   signal(SIGUSR2, sig_handler);
   //  if (receive_bit(pid_client) != 44)
@@ -68,9 +72,9 @@ t_map	init_map(t_map M, t_elem E)
 {
   M.map_adv = my_init_map();
   M.my_map = my_position(E.buff);
-  printf("my positions:\n");
+  write(1, "my positions:\n", strlen("my positions:\n"));
   my_disp_map(M.my_map);
-  printf("\nenemy's positions:\n");
+  write(1, "\nenemy's positions:\n", strlen("\nenemy's positions:\n"));
   my_disp_map(M.map_adv);
   return (M);
 }
