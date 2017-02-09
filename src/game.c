@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb  9 08:53:28 2017 miguel joubert
+** Last update Thu Feb  9 09:16:52 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -37,7 +37,7 @@ int	host(t_elem E, t_map M)
 {
   while (E.loose != 1 && E.win != 1)
     {
-      my_printf("\nattack: ");
+      my_putstr("\nattack: ", 1);
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
       E.s = pars_case(E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
@@ -47,7 +47,7 @@ int	host(t_elem E, t_map M)
       E.answer = receive_bit(E.pid);
       if (E.answer == 1 && is_played(E.my_stock) == 0) M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1) M = map_aftchd(M, E, strdup("missed"), 2);
-      my_printf("\nwaiting for enemy's attack...\n");
+      printf("\nwaiting for enemy's attack...\n");
       E.a = receive_bit(E.pid);
       E.b = receive_bit(E.pid);
       usleep(10000);
@@ -74,7 +74,7 @@ int	client(t_elem E, t_map M)
 {
   while (E.loose != 1 && E.win != 1)
     {
-      my_printf("\nwaiting for enemy's attack...\n");
+      printf("\nwaiting for enemy's attack...\n");
       E.a = receive_bit(E.pid);
       E.b = receive_bit(E.pid);
       E.adv_stock[E.j] = malloc(sizeof(char) * 3);
@@ -87,7 +87,7 @@ int	client(t_elem E, t_map M)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, "missed", 0);
       if (E.win == 0) return (0);
-      my_printf("attack: ");
+      my_putstr("attack: ", 1);
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
       E.s = pars_case(E.s);
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);

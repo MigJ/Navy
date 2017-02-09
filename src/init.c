@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Thu Feb  9 09:02:59 2017 miguel joubert
+** Last update Thu Feb  9 09:12:19 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -17,10 +17,10 @@ int	client_init(int pid_server)
   pid = getpid();
   signal(SIGUSR1, sig_handler);
   signal(SIGUSR2, sig_handler);
-  my_printf("my_pid : %d\n", pid);
+  printf("my_pid : %d\n", pid);
   kill(pid_server, SIGUSR1);
   pause();
-  my_printf("successfully connected\n\n");
+  printf("successfully connected\n\n");
   //send_bit(44, pid_server);
   return (pid_server);
 }
@@ -31,11 +31,11 @@ int	server_init()
   pid_t pid_server;
 
   pid_server = getpid();
-  my_printf("my_pid: %d\n", pid_server);
-  my_printf("waiting for enemy connection...\n");
+  printf("my_pid: %d\n", pid_server);
+  printf("waiting for enemy connection...\n");
   pid_client = get_pidclient();
   kill(pid_client, SIGUSR1);
-  my_printf("enemy connected\n\n");
+  printf("enemy connected\n\n");
   signal(SIGUSR1, sig_handler);
   signal(SIGUSR2, sig_handler);
   //  if (receive_bit(pid_client) != 44)
