@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:42:57 2017 miguel joubert
-** Last update Mon Feb  6 15:42:21 2017 miguel joubert
+** Last update Thu Feb  9 15:54:18 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -116,6 +116,10 @@ char	**ret_all_cases(char *buff)
 	       && H.bol == 0) H = case_cpy_second(buff, H);
       H = case_cpy_third(buff, H);
     }
+  H.all_case[H.j] = malloc(sizeof(char) * 3);
+  *H.all_case[H.j] = buff[29];
+  H.all_case[H.j][1] = buff[30];
+  H.all_case[H.j++][2] = 0;
   H.all_case[H.j] = NULL;
   return (H.all_case);
 }
