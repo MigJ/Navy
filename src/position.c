@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:07:28 2017 miguel joubert
-** Last update Thu Feb  9 16:20:18 2017 miguel joubert
+** Last update Thu Feb  9 17:23:24 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -16,6 +16,7 @@ int	verify_length(char *buff)
   int	j;
   char	*stock;
 
+  if (buff[28] != ':') return (1);
   if (buff[0] < '2' || *buff > '5') return (1);
   stock = malloc(sizeof(char) * 6);
   j = i = 0;
