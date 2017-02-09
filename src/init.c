@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Mon Feb  6 17:57:03 2017 miguel joubert
+** Last update Thu Feb  9 09:02:59 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -35,7 +35,7 @@ int	server_init()
   my_printf("waiting for enemy connection...\n");
   pid_client = get_pidclient();
   kill(pid_client, SIGUSR1);
-  my_printf("\nenemy connected\n\n");
+  my_printf("enemy connected\n\n");
   signal(SIGUSR1, sig_handler);
   signal(SIGUSR2, sig_handler);
   //  if (receive_bit(pid_client) != 44)
