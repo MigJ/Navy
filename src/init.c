@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Thu Feb  9 14:57:18 2017 miguel joubert
+** Last update Thu Feb  9 15:58:18 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -64,7 +64,7 @@ t_elem	init_elem(t_elem E, int ac, char **av)
   E.pid = (ac == 2) ? server_init() : client_init(my_getnbr(av[1]));
   E.my_stock = malloc(sizeof(char *) * 100);
   E.adv_stock = malloc(sizeof(char *) * 100);
-  E.win = E.loose = 14;
+  E.win = E.loose = 15;
   E.j = 0;
   return (E);
 }
