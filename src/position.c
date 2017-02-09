@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:07:28 2017 miguel joubert
-** Last update Mon Feb  6 17:54:12 2017 miguel joubert
+** Last update Thu Feb  9 16:20:18 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -160,6 +160,7 @@ char	**is_touched(char **map, t_vector C)
   t_touch	T;
 
   T.k = T.j = T.i = 0;
+  //printf("%d\n%d\n", C.x, C.y);
   T.dest = malloc(sizeof(char *) * 15);
   while (T.i != C.y)
     T.dest[T.j++] = strdup(map[T.i++]);
@@ -169,7 +170,10 @@ char	**is_touched(char **map, t_vector C)
       if (T.k == C.x)
 	{
 	  if (map[T.i][T.k] == '.')
-	    return (NULL);
+	    {
+	      // printf("je suis bon\n");
+	      return (NULL);
+	    }
 	  T.dest[T.j][T.k++] = 'x';
 	}
       T.dest[T.j][T.k] = map[T.i][T.k], T.k++;

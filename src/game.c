@@ -5,13 +5,14 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb  9 15:32:10 2017 miguel joubert
+** Last update Thu Feb  9 16:18:15 2017 miguel joubert
 */
 
 #include "../include/my.h"
 
 t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
 {
+  usleep(1000);
   if (cond == 2)
     {
       //      printf("%c%d\n", E.s[0], E.s[1] - 48);
@@ -39,7 +40,7 @@ t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
 	M.my_map = (cond == 1 && is_played(E.my_stock) == 0)
 	  ? my_position_init(M.my_map, convert_co_int(E.a, E.b), 'x')
 	  : my_position_init(M.my_map, convert_co_int(E.a, E.b), 'o');
-      //      send_bit(cond, E.pid);
+      send_bit(cond, E.pid);
     }
   return (M);
 }
@@ -55,11 +56,11 @@ int	host(t_elem E, t_map M)
       if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
       if (E.s != NULL) E.my_stock[E.j + 1] = NULL;
       if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
-
       if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
       //printf("En attente...\n");
       E.answer = receive_bit(E.pid);
       //printf("\nOk\n");
+      //printf("%d\n", E.answer);
       if (E.answer == 1 && is_played(E.my_stock) == 0) M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1) M = map_aftchd(M, E, strdup("missed"), 2);
       write(1, "\nwaiting for enemy's attack...\n", strlen("\nwaiting for enemy's attack...\n"));
@@ -74,7 +75,7 @@ int	host(t_elem E, t_map M)
       if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, strdup("missed"), 0);
-      send_bit(1, E.pid);
+      //      send_bit(1, E.pid);
       write(1, "my positions:\n", strlen("my positions:\n"));
       my_disp_map(M.my_map);
       write(1, "\nenemy's positions:\n", strlen("\nenemy's positions:\n"));
@@ -104,8 +105,7 @@ int	client(t_elem E, t_map M)
       if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, "missed", 0);
-      send_bit(1, E.pid);
-      
+            
       if (E.win == 0) return (0);
       write(1, "attack: ", strlen("attack: "));
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
