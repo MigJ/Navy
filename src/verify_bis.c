@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:09:28 2017 miguel joubert
-** Last update Thu Feb  9 09:16:41 2017 miguel joubert
+** Last update Sat Feb 11 18:40:21 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -17,6 +17,7 @@ int	is_played(char **all_cases)
 
   i = 0;
   j = 1;
+  if (*all_cases == NULL) return (0);
   while (all_cases[i])
     {
       while (all_cases[j])

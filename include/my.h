@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Thu Feb  9 10:13:42 2017 miguel joubert
+** Last update Sat Feb 11 17:12:20 2017 miguel joubert
 */
 
 #ifndef _NAVY_H
@@ -91,7 +91,7 @@ char    **ret_all_cases(char *buff);
 
 t_vector        convert_co_int(int x, int y);
 
-void	my_disp_map(char **map);
+void	my_disp_map(char **map, char *name);
 
 t_vector        convert_co_char(char *number);
 

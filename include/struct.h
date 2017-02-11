@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:01:49 2017 miguel joubert
-** Last update Mon Feb  6 11:11:04 2017 miguel joubert
+** Last update Sat Feb 11 17:55:50 2017 miguel joubert
 */
 
 #ifndef _STRUCT_H
@@ -58,5 +58,22 @@ typedef struct s_touch
   int   j;
   int   k;
 }t_touch;
+
+typedef struct s_pars
+{
+  char  *dest;
+  char  **tmp;
+  int   tmp_i;
+  int   i;
+  int   j;
+  int   k;
+}t_pars;
+
+typedef struct s_order
+{
+  char          *dest;
+  char          tmp;
+  int           i;
+}t_order;
 
 #endif /* _STRUCT_H */

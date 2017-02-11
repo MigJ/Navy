@@ -1,11 +1,11 @@
 /*
-1;4600;0c1;4600;0c** main.c for  in /home/miguel.joubert/delivery/PSU_2016_navy
+** main.c for  in /home/miguel.joubert/delivery/PSU_2016_navy
 ** 
 ** Made by miguel joubert
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Sat Feb 11 15:32:11 2017 miguel joubert
+** Last update Sat Feb 11 18:38:52 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -17,11 +17,7 @@ t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
   c = malloc(sizeof(char) * 3);
   if (cond == 2)
     {
-      //write(1, &(E.s[0]), 1);
-      //write(1, &(E.s[1]), 1);
-      my_putstr(E.s, 1);
-      my_putstr(": ", 1);
-      my_putstr(str, 1);
+      my_putstr(my_strcat(my_strcat(E.s, ": "), str), 1);
       if (is_played(E.my_stock) == 0)
 	M.map_adv = (strcmp(str, "hit") == 0) ?
 	  my_position_init(M.map_adv, convert_co_int(E.s[0] - 64, E.s[1] - 48), 'x') :
@@ -32,19 +28,37 @@ t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
       *c = E.a + 64;
       c[1] = E.b + 48;
       c[2] = 0;
-      my_putstr(c, 1);
-      // c = E.b + 48;
-      // write(1, &c, 1);
-      my_putstr(": ", 1);
-      my_putstr(str, 1);
-      my_putstr("\n", 1);
+      my_putstr(my_strcat(my_strcat(c, ": "), my_strcat(str, "\n")), 1);
       if (is_played(E.adv_stock) == 0)
-	M.my_map = (cond == 1 && is_played(E.my_stock) == 0)
+	M.my_map = (cond == 1)
 	  ? my_position_init(M.my_map, convert_co_int(E.a, E.b), 'x')
 	  : my_position_init(M.my_map, convert_co_int(E.a, E.b), 'o');
       send_bit(cond, E.pid);
     }
   return (M);
+}
+
+t_elem	assign_values(t_elem E, int cond)
+{
+  if (cond == 0 && E.s != NULL)
+    {
+      E.my_stock[E.j] = malloc(sizeof(char) * 3);
+      E.my_stock[E.j] = strdup(E.s);
+      E.my_stock[E.j + 1] = NULL;
+      send_bit(E.s[0] - 64, E.pid);
+      send_bit(E.s[1] - 48, E.pid);
+    }
+  else if (cond == 1)
+    {
+      E.a = receive_bit(E.pid);
+      E.b = receive_bit(E.pid);
+      E.adv_stock[E.j] = malloc(sizeof(char) * 3);
+      *E.adv_stock[E.j] = E.a - 64;
+      E.adv_stock[E.j][1] = E.b - 48;
+      E.adv_stock[E.j][2] = 0;
+      E.adv_stock[++E.j] = NULL;
+    }
+  return (E);
 }
 
 int	host(t_elem E, t_map M)
@@ -53,38 +67,21 @@ int	host(t_elem E, t_map M)
     {
       my_putstr("\nattack: ", 1);
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
-
-      //printf("Voila le texte : %s\n", E.s);
       E.s = pars_case(E.s);
-      if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
-      if (E.s != NULL) E.my_stock[E.j + 1] = NULL;
-      //usleep(1000);
-      if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
-      //usleep(1000);
-      if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
-      //printf("En attente...\n");
+      E = assign_values(E, 0);
       E.answer = receive_bit(E.pid);
-      //printf("\nOk\n");
-      //printf("%d\n", E.answer);
-      if (E.answer == 1 && is_played(E.my_stock) == 0) M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
-      else if (E.answer == 0 || is_played(E.my_stock) == 1) M = map_aftchd(M, E, strdup("missed"), 2);
+      if (E.answer == 1 && is_played(E.my_stock) == 0)
+	M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
+      else if (E.answer == 0 || is_played(E.my_stock) == 1)
+	M = map_aftchd(M, E, strdup("missed"), 2);
       my_putstr("\nwaiting for enemy's attack...\n", 1);
-      E.a = receive_bit(E.pid);
-      E.b = receive_bit(E.pid);
-      //usleep(900);
-      E.adv_stock[E.j] = malloc(sizeof(char) * 3);
-      *E.adv_stock[E.j] = E.a - 64;
-      E.adv_stock[E.j][1] = E.b - 48;
-      E.adv_stock[E.j][2] = 0;
-      E.adv_stock[++E.j] = NULL;
-      if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL && is_played(E.adv_stock) == 0)
+      E = assign_values(E, 1);
+      if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL
+	  && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, strdup("missed"), 0);
-      //      send_bit(1, E.pid);
-      my_putstr("my positions:\n", 1);
-      my_disp_map(M.my_map);
-      my_putstr("\nenemy's positions:\n", 1);
-      my_disp_map(M.map_adv);
+      my_disp_map(M.my_map, "my_map");
+      my_disp_map(M.map_adv, "map_adv");
       E.answer = -1;
       free(E.s);
     }
@@ -97,36 +94,22 @@ int	client(t_elem E, t_map M)
   while (E.loose != 1 && E.win != 1)
     {
       my_putstr("\nwaiting for enemy's attack...\n", 1);
-      //      usleep(1000);
-      E.a = receive_bit(E.pid);
-      // usleep(1000);
-      E.b = receive_bit(E.pid);
-      //usleep(1000);
-      E.adv_stock[E.j] = malloc(sizeof(char) * 3);
-      *E.adv_stock[E.j] = E.a + 64;
-      E.adv_stock[E.j][1] = E.b + 48;
-      E.adv_stock[E.j][2] = 0;
-      E.adv_stock[E.j + 1] = NULL;
-      //usleep(1000);
-      if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL && is_played(E.adv_stock) == 0)
+      E = assign_values(E, 1);
+      if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL
+	  && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, "missed", 0);
-            
-      if (E.win == 0) return (0);
       my_putstr("attack: ", 1);
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
       E.s = pars_case(E.s);
-      if (E.s != NULL) E.my_stock[E.j] = strdup(E.s);
-      if (E.s != NULL) E.my_stock[++E.j] = NULL;
-      if (E.s != NULL) send_bit(E.s[0] - 64, E.pid);
-      if (E.s != NULL) send_bit(E.s[1] - 48, E.pid);
+      E = assign_values(E, 0);
       E.answer = receive_bit(E.pid);
-      if (E.answer == 1 && is_played(E.my_stock) == 0) M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
-      else if (E.answer == 0 || is_played(E.my_stock) == 1) M = map_aftchd(M, E, strdup("missed"), 2);
-      my_putstr("\nmy positions:\n", 1);
-      my_disp_map(M.my_map);
-      my_putstr("\nenemy's positions:\n", 1);
-      my_disp_map(M.map_adv);
+      if (E.answer == 1 && is_played(E.my_stock) == 0)
+	M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
+      else if (E.answer == 0 || is_played(E.my_stock) == 1)
+	M = map_aftchd(M, E, strdup("missed"), 2);
+      my_disp_map(M.my_map, "my_map");
+      my_disp_map(M.map_adv, "map_adv");
       E.answer = -1;
       free(E.s);
     }

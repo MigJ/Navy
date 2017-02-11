@@ -1,11 +1,11 @@
 /*
-1;4600;0c** main.c for navy in /home/nathan.trehout/delivery/PSU_2016_navy/src
+** main.c for navy in /home/nathan.trehout/delivery/PSU_2016_navy/src
 ** 
 ** Made by Nathan Trehout
 ** Login   <nathan.trehout@epitech.net>
 ** 
 ** Started on  Tue Jan 31 03:42:42 2017 Nathan Trehout
-** Last update Sat Feb 11 16:09:34 2017 miguel joubert
+** Last update Sat Feb 11 17:52:43 2017 miguel joubert
 */
 
 #include "../include/my.h"

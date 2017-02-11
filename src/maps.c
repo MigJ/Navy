@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:42:57 2017 miguel joubert
-** Last update Thu Feb  9 15:54:18 2017 miguel joubert
+** Last update Sat Feb 11 17:20:49 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -20,8 +20,7 @@ t_vector	convert_co_char(char *number)
   i = -1;
   if (number == NULL)
     {
-      C.x = 0;
-      C.y = 0;
+      C.x = C.y = 0;
       return (C);
     }
   while (letter[++i])
@@ -68,11 +67,15 @@ t_vector	convert_co_int(int x, int y)
   return (C);
 }
 
-void	my_disp_map(char **map)
+void	my_disp_map(char **map, char *name)
 {
   int	i;
 
   i = 0;
+  if (strcmp(name, "my_map") == 0)
+    my_putstr("\nmy positions:\n", 1);
+  else
+    my_putstr("\nenemy's positions:\n", 1);
   while (map[i])
     my_putstr(map[i++], 1);
 }

@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Sat Feb 11 15:39:24 2017 miguel joubert
+** Last update Sat Feb 11 18:31:06 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -14,7 +14,6 @@ int	client_init(int pid_server)
 {
   int   pid;
 
-  //  usleep(1000);
   pid = getpid();
   signal(SIGUSR1, sig_handler);
   signal(SIGUSR2, sig_handler);
@@ -24,7 +23,6 @@ int	client_init(int pid_server)
   kill(pid_server, SIGUSR1);
   pause();
   my_putstr("successfully connected\n\n", 1);
-  //send_bit(44, pid_server);
   return (pid_server);
 }
 
@@ -43,8 +41,6 @@ int	server_init()
   my_putstr("enemy connected\n\n", 1);
   signal(SIGUSR1, sig_handler);
   signal(SIGUSR2, sig_handler);
-  //  if (receive_bit(pid_client) != 44)
-  //   exit (84);
   return (pid_client);
 }
 
@@ -73,9 +69,7 @@ t_map	init_map(t_map M, t_elem E)
 {
   M.map_adv = my_init_map();
   M.my_map = my_position(E.buff);
-  my_putstr("my positions:\n",1);
-  my_disp_map(M.my_map);
-  my_putstr("\nenemy's positions:\n",1 );
-  my_disp_map(M.map_adv);
+  my_disp_map(M.my_map, "my_map");
+  my_disp_map(M.map_adv, "map_adv");
   return (M);
 }
