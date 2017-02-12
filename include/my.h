@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Sat Feb 11 17:12:20 2017 miguel joubert
+** Last update Sun Feb 12 15:10:21 2017 miguel joubert
 */
 
 #ifndef _NAVY_H
@@ -20,6 +20,8 @@
 #include <stdlib.h>
 #include <signal.h>
 #include "struct.h"
+
+char	**double_case(char **all_cases);
 
 void     my_put_nbr(int nb);
 

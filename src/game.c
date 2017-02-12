@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Sat Feb 11 18:38:52 2017 miguel joubert
+** Last update Sun Feb 12 18:54:48 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -42,9 +42,10 @@ t_elem	assign_values(t_elem E, int cond)
 {
   if (cond == 0 && E.s != NULL)
     {
-      E.my_stock[E.j] = malloc(sizeof(char) * 3);
-      E.my_stock[E.j] = strdup(E.s);
-      E.my_stock[E.j + 1] = NULL;
+      E.s = pars_case(E.s);
+      E.my_stock[E.k] = malloc(sizeof(char) * 3);
+      E.my_stock[E.k] = strdup(E.s);
+      E.my_stock[++E.k] = NULL;
       send_bit(E.s[0] - 64, E.pid);
       send_bit(E.s[1] - 48, E.pid);
     }
@@ -53,8 +54,8 @@ t_elem	assign_values(t_elem E, int cond)
       E.a = receive_bit(E.pid);
       E.b = receive_bit(E.pid);
       E.adv_stock[E.j] = malloc(sizeof(char) * 3);
-      *E.adv_stock[E.j] = E.a - 64;
-      E.adv_stock[E.j][1] = E.b - 48;
+      *E.adv_stock[E.j] = E.a + 64;
+      E.adv_stock[E.j][1] = E.b + 48;
       E.adv_stock[E.j][2] = 0;
       E.adv_stock[++E.j] = NULL;
     }
@@ -67,25 +68,26 @@ int	host(t_elem E, t_map M)
     {
       my_putstr("\nattack: ", 1);
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
-      E.s = pars_case(E.s);
       E = assign_values(E, 0);
       E.answer = receive_bit(E.pid);
       if (E.answer == 1 && is_played(E.my_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1)
 	M = map_aftchd(M, E, strdup("missed"), 2);
+      if (is_played(E.my_stock)==1)E.my_stock = double_case(E.my_stock),E.k--;
       my_putstr("\nwaiting for enemy's attack...\n", 1);
       E = assign_values(E, 1);
       if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL
 	  && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, strdup("missed"), 0);
+      if (is_played(E.adv_stock)==1)E.adv_stock=double_case(E.adv_stock),E.j--;
       my_disp_map(M.my_map, "my_map");
       my_disp_map(M.map_adv, "map_adv");
       E.answer = -1;
       free(E.s);
     }
-  (E.loose == 1) ? my_putstr("\nEnemy won\n", 1) : my_putstr("\nI won\n", 1);
+  (E.win == 1) ?  my_putstr("\nI won\n", 1) : my_putstr("\nEnemy won\n", 1);
   return ((E.loose == 1) ? 1 : 0);
 }
 
@@ -99,15 +101,16 @@ int	client(t_elem E, t_map M)
 	  && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, "missed", 0);
+      if (is_played(E.adv_stock)==1)E.adv_stock=double_case(E.adv_stock),E.j--;
       my_putstr("attack: ", 1);
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
-      E.s = pars_case(E.s);
       E = assign_values(E, 0);
       E.answer = receive_bit(E.pid);
       if (E.answer == 1 && is_played(E.my_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1)
 	M = map_aftchd(M, E, strdup("missed"), 2);
+      if (is_played(E.my_stock)==1) E.my_stock = double_case(E.my_stock),E.k--;
       my_disp_map(M.my_map, "my_map");
       my_disp_map(M.map_adv, "map_adv");
       E.answer = -1;
