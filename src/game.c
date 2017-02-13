@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Sun Feb 12 18:54:48 2017 miguel joubert
+** Last update Mon Feb 13 12:39:16 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -74,6 +74,7 @@ int	host(t_elem E, t_map M)
 	M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1)
 	M = map_aftchd(M, E, strdup("missed"), 2);
+      if (E.win == 1) break;
       if (is_played(E.my_stock)==1)E.my_stock = double_case(E.my_stock),E.k--;
       my_putstr("\nwaiting for enemy's attack...\n", 1);
       E = assign_values(E, 1);
@@ -81,6 +82,7 @@ int	host(t_elem E, t_map M)
 	  && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, strdup("missed"), 0);
+      if (E.loose == 1) break;
       if (is_played(E.adv_stock)==1)E.adv_stock=double_case(E.adv_stock),E.j--;
       my_disp_map(M.my_map, "my_map");
       my_disp_map(M.map_adv, "map_adv");
@@ -101,6 +103,7 @@ int	client(t_elem E, t_map M)
 	  && is_played(E.adv_stock) == 0)
 	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, "missed", 0);
+      if (E.loose == 1) break;
       if (is_played(E.adv_stock)==1)E.adv_stock=double_case(E.adv_stock),E.j--;
       my_putstr("attack: ", 1);
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
@@ -110,6 +113,7 @@ int	client(t_elem E, t_map M)
 	M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1)
 	M = map_aftchd(M, E, strdup("missed"), 2);
+      if (E.win == 1) break;
       if (is_played(E.my_stock)==1) E.my_stock = double_case(E.my_stock),E.k--;
       my_disp_map(M.my_map, "my_map");
       my_disp_map(M.map_adv, "map_adv");
