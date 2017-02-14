@@ -5,10 +5,17 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Sat Feb 11 17:31:14 2017 miguel joubert
-** Last update Sat Feb 11 17:52:10 2017 miguel joubert
+** Last update Tue Feb 14 18:05:27 2017 miguel joubert
 */
 
 #include "../include/my.h"
+
+int	disp_all_map(char **my_map, char **map_adv)
+{
+  my_disp_map(my_map, "my_map");
+  my_disp_map(map_adv, "map_adv");
+  return (-1);
+}
 
 void	my_putchar(char c)
 {

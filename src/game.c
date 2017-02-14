@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Tue Feb 14 17:48:53 2017 miguel joubert
+** Last update Tue Feb 14 18:04:56 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -84,9 +84,7 @@ int	host(t_elem E, t_map M)
       else M = map_aftchd(M, E, strdup("missed"), 0);
       if (E.loose == 1) break;
       if (is_played(E.adv_stock)==1)E.adv_stock=double_case(E.adv_stock),E.j--;
-      my_disp_map(M.my_map, "my_map");
-      my_disp_map(M.map_adv, "map_adv");
-      E.answer = -1;
+      E.answer = disp_all_map(M.my_map, M.map_adv);
       free(E.s);
     }
   (E.win == 1) ? my_putstr("\nI won\n", 1) : my_putstr("\nEnemy won\n", 1);
@@ -115,9 +113,7 @@ int	client(t_elem E, t_map M)
 	M = map_aftchd(M, E, strdup("missed"), 2);
       if (E.win == 1) break;
       if (is_played(E.my_stock)==1) E.my_stock = double_case(E.my_stock),E.k--;
-      my_disp_map(M.my_map, "my_map");
-      my_disp_map(M.map_adv, "map_adv");
-      E.answer = -1;
+      E.answer = disp_all_map(M.my_map, M.map_adv);
       free(E.s);
     }
   (E.loose == 1) ? my_putstr("\nEnemy won\n", 1) : my_putstr("\nI won\n", 1);
