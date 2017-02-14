@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Tue Feb 14 16:45:48 2017 miguel joubert
+** Last update Tue Feb 14 17:48:53 2017 miguel joubert
 */
 
 #include "../include/my.h"
@@ -89,7 +89,7 @@ int	host(t_elem E, t_map M)
       E.answer = -1;
       free(E.s);
     }
-  (E.win == 1) ?  my_putstr("\nI won\n", 1) : my_putstr("\nEnemy won\n", 1);
+  (E.win == 1) ? my_putstr("\nI won\n", 1) : my_putstr("\nEnemy won\n", 1);
   return ((E.loose == 1) ? 1 : 0);
 }
 
