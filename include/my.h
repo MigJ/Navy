@@ -5,11 +5,11 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Tue Feb 14 18:05:22 2017 miguel joubert
+** Last update Thu Feb 16 19:49:36 2017 Joubert Miguel
 */
 
-# ifndef _NAVY_H
-# define _NAVY_H
+#ifndef _NAVY_H_
+#define _NAVY_H_
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -109,4 +109,4 @@ char    *pars_map(char *buff);
 
 int	disp_all_map(char **my_map, char **map_adv);
 
-# endif /* _NAVY_H */
+#endif /* _NAVY_H_ */

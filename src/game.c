@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Tue Feb 14 18:04:56 2017 miguel joubert
+** Last update Thu Feb 16 22:23:01 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -14,14 +14,14 @@ t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
 {
   char *c;
 
-  c = malloc(sizeof(char) * 3);
+  if ((c = malloc(sizeof(char) * 3)) == NULL) return (M);
   if (cond == 2)
     {
       my_putstr(my_strcat(my_strcat(E.s, ": "), str), 1);
       if (is_played(E.my_stock) == 0)
 	M.map_adv = (strcmp(str, "hit") == 0) ?
-	  my_position_init(M.map_adv, convert_co_int(E.s[0] - 64, E.s[1] - 48), 'x') :
-	  my_position_init(M.map_adv, convert_co_int(E.s[0] - 64, E.s[1] - 48), 'o');
+  my_position_init(M.map_adv, convert_co_int(E.s[0] - 64, E.s[1] - 48), 'x') :
+  my_position_init(M.map_adv, convert_co_int(E.s[0] - 64, E.s[1] - 48), 'o');
     }
   else
     {
@@ -43,7 +43,8 @@ t_elem	assign_values(t_elem E, int cond)
   if (cond == 0 && E.s != NULL)
     {
       E.s = pars_case(E.s);
-      E.my_stock[E.k] = malloc(sizeof(char) * 3);
+      if ((E.my_stock[E.k] = malloc(sizeof(char) * 3)) == NULL)
+	return (E);
       E.my_stock[E.k] = strdup(E.s);
       E.my_stock[++E.k] = NULL;
       send_bit(E.s[0] - 64, E.pid);
@@ -53,7 +54,8 @@ t_elem	assign_values(t_elem E, int cond)
     {
       E.a = receive_bit(E.pid);
       E.b = receive_bit(E.pid);
-      E.adv_stock[E.j] = malloc(sizeof(char) * 3);
+      if ((E.adv_stock[E.j] = malloc(sizeof(char) * 3)) == NULL)
+	return (E);
       *E.adv_stock[E.j] = E.a + 64;
       E.adv_stock[E.j][1] = E.b + 48;
       E.adv_stock[E.j][2] = 0;

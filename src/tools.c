@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:39:04 2017 miguel joubert
-** Last update Sat Feb 11 17:32:20 2017 miguel joubert
+** Last update Thu Feb 16 20:02:43 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -27,7 +27,8 @@ char	*pars_case(char *buff)
   int	bol;
 
   bol = 0;
-  dest = malloc(sizeof(char) * 3);
+  if ((dest = malloc(sizeof(char) * 3)) == NULL)
+    return (NULL);
   if (buff == NULL)
     return (NULL);
   if (*buff == 0)

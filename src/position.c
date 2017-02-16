@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:07:28 2017 miguel joubert
-** Last update Sat Feb 11 17:58:36 2017 miguel joubert
+** Last update Thu Feb 16 22:27:41 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -18,7 +18,7 @@ int	verify_length(char *buff)
 
   if (buff[28] != ':') return (1);
   if (buff[0] < '2' || *buff > '5') return (1);
-  stock = malloc(sizeof(char) * 6);
+  if ((stock = malloc(sizeof(char) * 6)) == NULL) return (1);
   j = i = 0;
   *stock = *buff;
   while (buff[i])
@@ -43,10 +43,12 @@ char	**is_touched(char **map, t_vector C)
   t_touch	T;
 
   T.k = T.j = T.i = 0;
-  T.dest = malloc(sizeof(char *) * 15);
+  if ((T.dest = malloc(sizeof(char *) * 15)) == NULL)
+    return (NULL);
   while (T.i != C.y)
     T.dest[T.j++] = strdup(map[T.i++]);
-  T.dest[T.j] = malloc(sizeof(char) * 22);
+  if ((T.dest[T.j] = malloc(sizeof(char) * 22)) == NULL)
+    return (NULL);
   while (map[T.i][T.k])
     {
       if (T.k == C.x)
@@ -72,13 +74,15 @@ char	**my_position_init(char **map, t_vector C, char c)
   int   k;
 
   k = j = i = 0;
-  dest = malloc(sizeof(char *) * 20);
+  if ((dest = malloc(sizeof(char *) * 20)) == NULL)
+    return (NULL);
   while (i != C.y)
     {
       dest[j] = strdup(map[i]);
       j++, i++;
     }
-  dest[j] = malloc(sizeof(char) * 22);
+  if ((dest[j] = malloc(sizeof(char) * 22)) == NULL)
+    return (NULL);
   while (map[i][k])
     {
       if (k == C.x) dest[j][k++] = c;

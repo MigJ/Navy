@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:09:28 2017 miguel joubert
-** Last update Sun Feb 12 18:35:02 2017 miguel joubert
+** Last update Thu Feb 16 19:57:00 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -17,15 +17,16 @@ char	**double_case(char **all_cases)
   char	**dest;
 
   i = d_i = 0;
-  dest = malloc(sizeof(char *) * 70);
-  if (*all_cases == NULL)
+  if ((dest = malloc(sizeof(char *) * 70)) == NULL)
     return (NULL);
+  if (*all_cases == NULL) return (NULL);
   while (all_cases[i + 1])
     {
       if (strcmp(all_cases[i], all_cases[i + 1]) == 0) i++;
       else
 	{
-	  dest[d_i] = malloc(sizeof(char) * 3);
+	  if ((dest[d_i] = malloc(sizeof(char) * 3)) == NULL)
+	    return (NULL);
 	  dest[d_i] = strcpy(dest[d_i], all_cases[i]);
 	  i++, d_i++;
 	}

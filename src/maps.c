@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:42:57 2017 miguel joubert
-** Last update Sat Feb 11 17:20:49 2017 miguel joubert
+** Last update Thu Feb 16 22:26:37 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -43,9 +43,9 @@ t_vector	convert_co_int(int x, int y)
 {
   t_vector	C;
   int	i;
-  char	letter[] = " |A B C D E F G H";
-  char	nb[] = " -12345678";
-
+  char  letter[] = " |A B C D E F G H";
+  char  nb[] = " -12345678";
+    
   i = 0;
   while (letter[i])
     {
@@ -86,9 +86,11 @@ char	**my_init_map()
   int	i;
 
   i = 0;
-  map = malloc(sizeof(char *) * 11);
+  if ((map = malloc(sizeof(char *) * 11)) == NULL)
+    return (NULL);
   while (i != 11)
-    map[i++] = malloc(sizeof(char) * 18);
+    if ((map[i++] = malloc(sizeof(char) * 18)) == NULL)
+      return (NULL);
   *map = strdup(" |A B C D E F G H\n");
   map[1] = strdup("-+---------------\n");
   i = 2;
@@ -110,7 +112,8 @@ char	**ret_all_cases(char *buff)
 
   H.pos = H.bol = H.j = H.k = 0;
   H.i = 2;
-  H.all_case = malloc(sizeof(char *) * 15);
+  if ((H.all_case = malloc(sizeof(char *) * 15)) == NULL)
+    return (NULL);
   while (H.i != 29)
     {
       if (buff[H.i] != buff[H.i + 3] && H.bol == 0) H = case_cpy(buff, H);
@@ -119,7 +122,8 @@ char	**ret_all_cases(char *buff)
 	       && H.bol == 0) H = case_cpy_second(buff, H);
       H = case_cpy_third(buff, H);
     }
-  H.all_case[H.j] = malloc(sizeof(char) * 3);
+  if ((H.all_case[H.j] = malloc(sizeof(char) * 3)) == NULL)
+    return (NULL);
   *H.all_case[H.j] = buff[29];
   H.all_case[H.j][1] = buff[30];
   H.all_case[H.j++][2] = 0;

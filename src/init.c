@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 19:49:12 2017 miguel joubert
-** Last update Sun Feb 12 17:40:34 2017 miguel joubert
+** Last update Thu Feb 16 22:23:39 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -49,7 +49,8 @@ t_elem	init_buff(t_elem E, int ac, char **av)
   E.i = (ac == 2) ? 1 : 2;
   if (E.i == 1) E.fd = open(av[1], O_RDONLY);
   else E.fd = open(av[2], O_RDONLY);
-  E.buff = malloc(sizeof(char) * 32);
+  if ((E.buff = malloc(sizeof(char) * 32)) == NULL)
+    return (E);
   read(E.fd, E.buff, 32);
   E.buff[31] = 0;
   return (E);
@@ -58,8 +59,10 @@ t_elem	init_buff(t_elem E, int ac, char **av)
 t_elem	init_elem(t_elem E, int ac, char **av)
 {
   E.pid = (ac == 2) ? server_init() : client_init(my_getnbr(av[1]));
-  E.my_stock = malloc(sizeof(char *) * 100);
-  E.adv_stock = malloc(sizeof(char *) * 100);
+  if ((E.my_stock = malloc(sizeof(char *) * 100)) == NULL)
+    return (E);
+  if ((E.adv_stock = malloc(sizeof(char *) * 100)) == NULL)
+    return (E);
   E.win = E.loose = 15;
   E.j = 0;
   E.k = 0;

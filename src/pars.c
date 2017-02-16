@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Sat Feb 11 17:22:55 2017 miguel joubert
-** Last update Sat Feb 11 17:57:52 2017 miguel joubert
+** Last update Thu Feb 16 22:27:03 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -13,7 +13,8 @@
 t_pars		pars_map_line_loop(t_pars P, char *buff)
 {
   P.tmp_i = P.i;
-  P.tmp[buff[P.tmp_i] - 48] = malloc(sizeof(char) * 10);
+  if ((P.tmp[buff[P.tmp_i] - 48] = malloc(sizeof(char) * 10)) == NULL)
+    return (P);
   while (P.i != P.tmp_i + 7)
     P.tmp[buff[P.tmp_i] - 48][P.j++] = buff[P.i++];
   P.i++;
@@ -28,8 +29,10 @@ char		*pars_map_line(char *buff)
   t_pars	P;
 
   P.i = P.j = P.k = 0;
-  P.dest = malloc(sizeof(char) * 32);
-  P.tmp = malloc(sizeof(char *) * 10);
+  if ((P.dest = malloc(sizeof(char) * 32)) == NULL)
+    return (NULL);
+  if ((P.tmp = malloc(sizeof(char *) * 10)) == NULL)
+    return (NULL);
   while (P.i != 32)
     P = pars_map_line_loop(P, buff);
   P.tmp[5][7] = 0;
@@ -53,7 +56,8 @@ char		*pars_map_lowcase(char *buff)
   int		i;
 
   i = 0;
-  dest = malloc(sizeof(char) * 32);
+  if ((dest = malloc(sizeof(char) * 32)) == NULL)
+    return (NULL);
   dest = pars_map_line(buff);
   while (dest[i])
     {
@@ -69,7 +73,8 @@ char		*pars_map_order(char *buff)
   t_order	O;
 
   O.i = 2;
-  O.dest = malloc(sizeof(char) * 32);
+  if ((O.dest = malloc(sizeof(char) * 32)) == NULL)
+    return (NULL);
   O.dest = pars_map_lowcase(buff);
   while (O.i < 27)
     {
@@ -99,7 +104,8 @@ char		*pars_map(char *buff)
   int		i;
 
   i = 2;
-  dest = malloc(sizeof(char) * 32);
+  if ((dest = malloc(sizeof(char) * 32)) == NULL)
+    return (NULL);
   dest = pars_map_order(buff);
   while (i < 27)
     {
