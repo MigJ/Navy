@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:07:28 2017 miguel joubert
-** Last update Thu Feb 16 22:27:41 2017 Joubert Miguel
+** Last update Thu Feb 16 22:37:10 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -74,15 +74,13 @@ char	**my_position_init(char **map, t_vector C, char c)
   int   k;
 
   k = j = i = 0;
-  if ((dest = malloc(sizeof(char *) * 20)) == NULL)
-    return (NULL);
+  if ((dest = malloc(sizeof(char *) * 20)) == NULL) return (NULL);
   while (i != C.y)
     {
       dest[j] = strdup(map[i]);
       j++, i++;
     }
-  if ((dest[j] = malloc(sizeof(char) * 22)) == NULL)
-    return (NULL);
+  if ((dest[j] = malloc(sizeof(char) * 22)) == NULL) return (NULL);
   while (map[i][k])
     {
       if (k == C.x) dest[j][k++] = c;

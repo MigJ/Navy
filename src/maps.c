@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:42:57 2017 miguel joubert
-** Last update Thu Feb 16 22:26:37 2017 Joubert Miguel
+** Last update Thu Feb 16 22:35:55 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -45,7 +45,7 @@ t_vector	convert_co_int(int x, int y)
   int	i;
   char  letter[] = " |A B C D E F G H";
   char  nb[] = " -12345678";
-    
+
   i = 0;
   while (letter[i])
     {
