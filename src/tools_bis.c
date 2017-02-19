@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Sun Feb 19 20:50:46 2017 Joubert Miguel
-** Last update Sun Feb 19 21:03:28 2017 Joubert Miguel
+** Last update Sun Feb 19 23:07:13 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -16,7 +16,8 @@ char	*my_strdup(char* str)
   char  *dup;
 
   len = my_strlen(str) + 1;
-  dup = malloc(len);
+  if ((dup = malloc(len)) == NULL)
+    return (NULL);
   if (dup == NULL)
     return (NULL);
   dup = my_strcpy(dup, str);
