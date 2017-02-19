@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Sun Feb 19 21:01:00 2017 Joubert Miguel
+** Last update Sun Feb 19 23:05:51 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -77,7 +77,7 @@ int	host(t_elem E, t_map M)
       else if (E.answer == 0 || is_played(E.my_stock) == 1)
 	M = map_aftchd(M, E, my_strdup("missed"), 2);
       if (E.win == 1) break;
-      if (is_played(E.my_stock)==1) MY= double_case(E.my_stock, E.k--);
+      if (is_played(E.my_stock)==1) MY=double_case(E.my_stock, E.k--);
       my_putstr("\nwaiting for enemy's attack...\n", 1);
       E = assign_values(E, 1);
       if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL
@@ -114,7 +114,7 @@ int	client(t_elem E, t_map M)
       else if (E.answer == 0 || is_played(E.my_stock) == 1)
 	M = map_aftchd(M, E, my_strdup("missed"), 2);
       if (E.win == 1) break;
-      if (is_played(E.my_stock)==1) MY = double_case(E.my_stock, E.k--);
+      if (is_played(E.my_stock)==1) MY=double_case(E.my_stock, E.k--);
       E.answer = disp_all_map(M.my_map, M.map_adv);
       free(E.s);
     }
