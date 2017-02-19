@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:28:37 2017 miguel joubert
-** Last update Thu Feb 16 19:49:36 2017 Joubert Miguel
+** Last update Sun Feb 19 21:02:04 2017 Joubert Miguel
 */
 
 #ifndef _NAVY_H_
@@ -21,7 +21,16 @@
 #include <signal.h>
 #include "struct.h"
 
-char	**double_case(char **all_cases);
+#define ADV E.adv_stock
+#define MY E.my_stock
+
+char    *my_strcpy(char *dest, char *src);
+
+char    *my_strdup(char* str);
+
+int     my_strcmp(char *s1, char *s2);
+
+char	**double_case(char **all_cases, int victory);
 
 void     my_put_nbr(int nb);
 

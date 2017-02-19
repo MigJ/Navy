@@ -5,29 +5,30 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:09:28 2017 miguel joubert
-** Last update Thu Feb 16 19:57:00 2017 Joubert Miguel
+** Last update Sun Feb 19 21:02:20 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
 
-char	**double_case(char **all_cases)
+char	**double_case(char **all_cases, int victory)
 {
   int	i;
   int	d_i;
   char	**dest;
 
+  (void)victory;
   i = d_i = 0;
   if ((dest = malloc(sizeof(char *) * 70)) == NULL)
     return (NULL);
   if (*all_cases == NULL) return (NULL);
   while (all_cases[i + 1])
     {
-      if (strcmp(all_cases[i], all_cases[i + 1]) == 0) i++;
+      if (my_strcmp(all_cases[i], all_cases[i + 1]) == 0) i++;
       else
 	{
 	  if ((dest[d_i] = malloc(sizeof(char) * 3)) == NULL)
 	    return (NULL);
-	  dest[d_i] = strcpy(dest[d_i], all_cases[i]);
+	  dest[d_i] = my_strcpy(dest[d_i], all_cases[i]);
 	  i++, d_i++;
 	}
     }
@@ -49,7 +50,7 @@ int	is_played(char **all_cases)
     {
       while (all_cases[j])
 	{
-	  if (strcmp(all_cases[i], all_cases[j]) == 0)
+	  if (my_strcmp(all_cases[i], all_cases[j]) == 0)
 	    return (1);
 	  else
 	    j++;

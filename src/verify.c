@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:30:06 2017 miguel joubert
-** Last update Thu Feb 16 22:28:24 2017 Joubert Miguel
+** Last update Sun Feb 19 20:58:42 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -88,7 +88,7 @@ int	verify_hit(char *buff)
       H.k = H.j + 1;
       while (H.all_case[H.k])
 	{
-	  if (strcmp(H.all_case[H.j], H.all_case[H.k]) == 0) return (1);
+	  if (my_strcmp(H.all_case[H.j], H.all_case[H.k]) == 0) return (1);
 	  H.k++;
 	}
       H.j++;

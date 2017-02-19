@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:42:57 2017 miguel joubert
-** Last update Thu Feb 16 22:35:55 2017 Joubert Miguel
+** Last update Sun Feb 19 20:54:55 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -72,7 +72,7 @@ void	my_disp_map(char **map, char *name)
   int	i;
 
   i = 0;
-  if (strcmp(name, "my_map") == 0)
+  if (my_strcmp(name, "my_map") == 0)
     my_putstr("\nmy positions:\n", 1);
   else
     my_putstr("\nenemy's positions:\n", 1);
@@ -91,15 +91,15 @@ char	**my_init_map()
   while (i != 11)
     if ((map[i++] = malloc(sizeof(char) * 18)) == NULL)
       return (NULL);
-  *map = strdup(" |A B C D E F G H\n");
-  map[1] = strdup("-+---------------\n");
+  *map = my_strdup(" |A B C D E F G H\n");
+  map[1] = my_strdup("-+---------------\n");
   i = 2;
   while (i != 10)
     {
       *map[i] = i + 47;
       map[i][1] = '|';
       map[i][2] = 0;
-      map[i] = my_strcat(strdup(map[i]), ". . . . . . . .\n\0");
+      map[i] = my_strcat(my_strdup(map[i]), ". . . . . . . .\n\0");
       i++;
     }
   map[i] = NULL;

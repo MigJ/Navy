@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:22:18 2017 miguel joubert
-** Last update Thu Feb 16 22:23:01 2017 Joubert Miguel
+** Last update Sun Feb 19 21:01:00 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -19,7 +19,7 @@ t_map	map_aftchd(t_map M, t_elem E, char *str, int cond)
     {
       my_putstr(my_strcat(my_strcat(E.s, ": "), str), 1);
       if (is_played(E.my_stock) == 0)
-	M.map_adv = (strcmp(str, "hit") == 0) ?
+	M.map_adv = (my_strcmp(str, "hit") == 0) ?
   my_position_init(M.map_adv, convert_co_int(E.s[0] - 64, E.s[1] - 48), 'x') :
   my_position_init(M.map_adv, convert_co_int(E.s[0] - 64, E.s[1] - 48), 'o');
     }
@@ -45,7 +45,7 @@ t_elem	assign_values(t_elem E, int cond)
       E.s = pars_case(E.s);
       if ((E.my_stock[E.k] = malloc(sizeof(char) * 3)) == NULL)
 	return (E);
-      E.my_stock[E.k] = strdup(E.s);
+      E.my_stock[E.k] = my_strdup(E.s);
       E.my_stock[++E.k] = NULL;
       send_bit(E.s[0] - 64, E.pid);
       send_bit(E.s[1] - 48, E.pid);
@@ -73,19 +73,19 @@ int	host(t_elem E, t_map M)
       E = assign_values(E, 0);
       E.answer = receive_bit(E.pid);
       if (E.answer == 1 && is_played(E.my_stock) == 0)
-	M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
+	M = map_aftchd(M, E, my_strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1)
-	M = map_aftchd(M, E, strdup("missed"), 2);
+	M = map_aftchd(M, E, my_strdup("missed"), 2);
       if (E.win == 1) break;
-      if (is_played(E.my_stock)==1)E.my_stock = double_case(E.my_stock),E.k--;
+      if (is_played(E.my_stock)==1) MY= double_case(E.my_stock, E.k--);
       my_putstr("\nwaiting for enemy's attack...\n", 1);
       E = assign_values(E, 1);
       if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL
 	  && is_played(E.adv_stock) == 0)
-	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
-      else M = map_aftchd(M, E, strdup("missed"), 0);
+	M = map_aftchd(M, E, my_strdup("hit"), 1), E.loose--;
+      else M = map_aftchd(M, E, my_strdup("missed"), 0);
       if (E.loose == 1) break;
-      if (is_played(E.adv_stock)==1)E.adv_stock=double_case(E.adv_stock),E.j--;
+      if (is_played(E.adv_stock)==1) ADV=double_case(E.adv_stock, E.j--);
       E.answer = disp_all_map(M.my_map, M.map_adv);
       free(E.s);
     }
@@ -101,20 +101,20 @@ int	client(t_elem E, t_map M)
       E = assign_values(E, 1);
       if (is_touched(M.my_map, convert_co_int(E.a, E.b)) != NULL
 	  && is_played(E.adv_stock) == 0)
-	M = map_aftchd(M, E, strdup("hit"), 1), E.loose--;
+	M = map_aftchd(M, E, my_strdup("hit"), 1), E.loose--;
       else M = map_aftchd(M, E, "missed", 0);
       if (E.loose == 1) break;
-      if (is_played(E.adv_stock)==1)E.adv_stock=double_case(E.adv_stock),E.j--;
+      if (is_played(E.adv_stock)==1) ADV=double_case(E.adv_stock, E.j--);
       my_putstr("attack: ", 1);
       while ((E.s = get_next_line(0)) && verify_exist(E.s) == 1);
       E = assign_values(E, 0);
       E.answer = receive_bit(E.pid);
       if (E.answer == 1 && is_played(E.my_stock) == 0)
-	M = map_aftchd(M, E, strdup("hit"), 2), E.win--;
+	M = map_aftchd(M, E, my_strdup("hit"), 2), E.win--;
       else if (E.answer == 0 || is_played(E.my_stock) == 1)
-	M = map_aftchd(M, E, strdup("missed"), 2);
+	M = map_aftchd(M, E, my_strdup("missed"), 2);
       if (E.win == 1) break;
-      if (is_played(E.my_stock)==1) E.my_stock = double_case(E.my_stock),E.k--;
+      if (is_played(E.my_stock)==1) MY = double_case(E.my_stock, E.k--);
       E.answer = disp_all_map(M.my_map, M.map_adv);
       free(E.s);
     }
@@ -129,7 +129,7 @@ int	main(int ac, char **av)
 
   if (ac < 2)
     return (84);
-  if (strcmp(av[1], "-h") == 0) return (help());
+  if (my_strcmp(av[1], "-h") == 0) return (help());
   E = init_buff(E, ac, av);
   if (verify_length(E.buff) == 1) return (84);
   E.buff = pars_map(E.buff);

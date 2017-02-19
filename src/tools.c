@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Mon Jan 30 23:39:04 2017 miguel joubert
-** Last update Thu Feb 16 20:02:43 2017 Joubert Miguel
+** Last update Sun Feb 19 21:03:53 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -86,4 +86,14 @@ size_t	my_strlen(char *str)
   while (str[i])
     i++;
   return (i);
+}
+
+int	my_strcmp(char *s1, char *s2)
+{
+  int   i;
+
+  i = 0;
+  while ((s1[i] == s2[i]) && (s1[i] != '\0') && (s2[i] != '\0'))
+    i++;
+  return (s1[i] - s2[i]);
 }

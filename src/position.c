@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.net>
 ** 
 ** Started on  Wed Feb  1 22:07:28 2017 miguel joubert
-** Last update Thu Feb 16 22:37:10 2017 Joubert Miguel
+** Last update Sun Feb 19 20:55:55 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -46,7 +46,7 @@ char	**is_touched(char **map, t_vector C)
   if ((T.dest = malloc(sizeof(char *) * 15)) == NULL)
     return (NULL);
   while (T.i != C.y)
-    T.dest[T.j++] = strdup(map[T.i++]);
+    T.dest[T.j++] = my_strdup(map[T.i++]);
   if ((T.dest[T.j] = malloc(sizeof(char) * 22)) == NULL)
     return (NULL);
   while (map[T.i][T.k])
@@ -61,7 +61,7 @@ char	**is_touched(char **map, t_vector C)
     }
   T.dest[T.j][T.k] = 0;
   while (map[++T.i])
-    T.dest[++T.j] = strdup(map[T.i]);
+    T.dest[++T.j] = my_strdup(map[T.i]);
   T.dest[T.j + 1] = NULL;
   return (T.dest);
 }
@@ -77,7 +77,7 @@ char	**my_position_init(char **map, t_vector C, char c)
   if ((dest = malloc(sizeof(char *) * 20)) == NULL) return (NULL);
   while (i != C.y)
     {
-      dest[j] = strdup(map[i]);
+      dest[j] = my_strdup(map[i]);
       j++, i++;
     }
   if ((dest[j] = malloc(sizeof(char) * 22)) == NULL) return (NULL);
@@ -89,7 +89,7 @@ char	**my_position_init(char **map, t_vector C, char c)
     }
   dest[j][k] = 0;
   while (map[++i])
-    dest[++j] = strdup(map[i]);
+    dest[++j] = my_strdup(map[i]);
   dest[j + 1] = NULL;
   *dest[0] = ' ';
   return (dest);
